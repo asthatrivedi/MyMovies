@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <model userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="7701" systemVersion="14F27" minimumToolsVersion="Automatic" macOSVersion="Automatic" iOSVersion="Automatic">
-    <entity name="Locations" syncable="YES">
+    <entity name="Location" syncable="YES">
         <attribute name="location" optional="YES" attributeType="String" syncable="YES"/>
-        <attribute name="movie_name" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="movie" optional="YES" attributeType="String" syncable="YES"/>
     </entity>
     <entity name="Movie" syncable="YES">
         <attribute name="actors" optional="YES" attributeType="String" syncable="YES"/>
@@ -11,9 +11,10 @@
         <attribute name="production" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="writer" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="year" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="locations" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Location" syncable="YES"/>
     </entity>
     <elements>
-        <element name="Movie" positionX="-63" positionY="-18" width="128" height="135"/>
-        <element name="Locations" positionX="-54" positionY="36" width="128" height="75"/>
+        <element name="Location" positionX="-54" positionY="36" width="128" height="75"/>
+        <element name="Movie" positionX="-63" positionY="-18" width="128" height="150"/>
     </elements>
 </model>
