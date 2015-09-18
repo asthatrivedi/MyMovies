@@ -28,6 +28,8 @@
     return sharedService;
 }
 
+#pragma mark - Public Methods
+
 - (void)operationWith:(NSURL *)url
         completionWithSuccess:(void (^)(id responseObject))completionBlock
         withFailure:(void (^)(NSError *error))errorBlock
