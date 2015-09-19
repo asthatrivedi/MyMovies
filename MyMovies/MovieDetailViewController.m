@@ -10,6 +10,7 @@
 
 #import "DetailItemTableViewCell.h"
 #import "MovieDetailViewModel.h"
+#import "MapHeaderView.h"
 
 @interface MovieDetailViewController ()
 
@@ -51,6 +52,17 @@
     [cell setupViewModel:[self.detailItems objectAtIndex:indexPath.row]];
     
     return cell;
+}
+
+- (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
+    
+    MapHeaderView *headerView = (MapHeaderView *)[tableView dequeueReusableCellWithIdentifier:@"mapHeader"];
+    [headerView setLocationFromAddressString:self.viewModel.location];
+    return headerView;
+}
+
+- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
+    return 244.f;
 }
 
 @end

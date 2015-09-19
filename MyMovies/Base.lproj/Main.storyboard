@@ -122,6 +122,30 @@
                                     <outlet property="value" destination="6pc-g5-kMx" id="Hgi-8f-OUb"/>
                                 </connections>
                             </tableViewCell>
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="mapHeader" rowHeight="244" id="VS0-1T-Efl" customClass="MapHeaderView">
+                                <rect key="frame" x="0.0" y="0.0" width="600" height="44"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="VS0-1T-Efl" id="q4F-oW-Gvg">
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <mapView clipsSubviews="YES" multipleTouchEnabled="YES" tag="12" contentMode="scaleToFill" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="99Z-Fx-oQg">
+                                            <rect key="frame" x="0.0" y="0.0" width="600" height="243.5"/>
+                                            <connections>
+                                                <outlet property="delegate" destination="VS0-1T-Efl" id="zds-GY-1fK"/>
+                                            </connections>
+                                        </mapView>
+                                    </subviews>
+                                    <constraints>
+                                        <constraint firstItem="99Z-Fx-oQg" firstAttribute="leading" secondItem="q4F-oW-Gvg" secondAttribute="leadingMargin" constant="-8" id="75e-VQ-E8v"/>
+                                        <constraint firstAttribute="trailingMargin" secondItem="99Z-Fx-oQg" secondAttribute="trailing" constant="-8" id="MiS-XU-0sa"/>
+                                        <constraint firstItem="99Z-Fx-oQg" firstAttribute="top" secondItem="q4F-oW-Gvg" secondAttribute="topMargin" constant="-8" id="SHA-8b-H5e"/>
+                                        <constraint firstAttribute="bottomMargin" secondItem="99Z-Fx-oQg" secondAttribute="bottom" constant="-8" id="jff-qY-jrN"/>
+                                    </constraints>
+                                </tableViewCellContentView>
+                                <connections>
+                                    <outlet property="mapView" destination="99Z-Fx-oQg" id="loy-hl-huJ"/>
+                                </connections>
+                            </tableViewCell>
                         </prototypes>
                         <connections>
                             <outlet property="dataSource" destination="1Vb-Vy-2Y8" id="gTf-cR-mYg"/>

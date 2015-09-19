@@ -10,6 +10,7 @@
 
 extern NSString * const kMovieResultsKey;
 extern NSString * const kUpdateContentKey;
+extern NSString * const kErrorKey;
 
 @interface Utils : NSObject
 

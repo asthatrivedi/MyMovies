@@ -18,6 +18,7 @@
 
 @property (nonatomic, strong) MovieListViewModel *viewModel;
 @property (nonatomic, assign) NSInteger currentIndex;
+@property (nonatomic, assign) BOOL isLoadingMoreResults;
 
 @end
 
@@ -56,6 +57,11 @@
     cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
     [cell setupMovieListCellWithViewModel:[self.viewModel.movieList objectAtIndex:indexPath.row]];
     
+    if (!self.isLoadingMoreResults && indexPath.row == ([self.viewModel.movieList count] - 1)) {
+        self.isLoadingMoreResults = YES;
+        [self _loadMoreMovies];
+    }
+    
     return cell;
 }
 
@@ -68,8 +74,36 @@
 
 
 - (void)_handleUpdateDataNotification:(NSNotification *)notif {
-    self.viewModel = [[MoviesService sharedService] movieList];
-    [self.tableView reloadData];
+    
+    NSDictionary *userInfo = notif.userInfo;
+    NSString *errorString = userInfo[kErrorKey];
+    
+    self.isLoadingMoreResults = NO;
+    
+    if ([errorString length]) {
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"ERROR"
+                                                        message:errorString
+                                                       delegate:self
+                                              cancelButtonTitle:@"OK"
+                                              otherButtonTitles:nil];
+        [alert show];
+    }
+    else {
+        self.viewModel = [[MoviesService sharedService] movieList];
+        if ([self.viewModel.movieList count] == 0) {
+            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@""
+                                                            message:@"No Movies Playing in your area."
+                                                           delegate:self
+                                                  cancelButtonTitle:@"OK"
+                                                  otherButtonTitles:nil];
+            [alert show];
+        }
+        [self.tableView reloadData];
+    }
+}
+
+- (void)_loadMoreMovies {
+    [[MoviesService sharedService] loadMoreMovies];
 }
 
 - (void)_showMovieDetailViewWithIndex:(NSInteger)index {

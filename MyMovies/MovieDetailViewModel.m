@@ -19,7 +19,7 @@
     cellViewModel.title = movie.title;
     cellViewModel.year = movie.year;
     cellViewModel.actors = movie.actors;
-    cellViewModel.location = movie.location;
+    cellViewModel.location = [MovieDetailViewModel _getFullLocationAddress:movie.location];
     cellViewModel.director = movie.director;
     cellViewModel.production = movie.production;
     cellViewModel.writer = movie.writer;
@@ -39,6 +39,16 @@
     [detailItems addObject:[DetailItemViewModel viewModelWithInfoType:@"Writer" andValue:self.writer]];
     
     return detailItems;
+}
+
++ (NSString *)_getFullLocationAddress:(NSString *)address {
+    
+    if (address) {
+        return [NSString stringWithFormat:@"%@ %@", address, @"San Francisco"];
+    }
+    else {
+        return @"San Francisco";
+    }
 }
 
 @end

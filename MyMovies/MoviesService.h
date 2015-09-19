@@ -15,6 +15,7 @@
 + (instancetype)sharedService;
 
 - (void)getMovies;
+- (void)loadMoreMovies;
 - (MovieListViewModel *)movieList;
 
 @end

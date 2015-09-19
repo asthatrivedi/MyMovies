@@ -63,11 +63,11 @@ NSString * const kMovieEntity = @"Movie";
 
 + (NSString *)_actorsStringFromJson:(NSDictionary *)json {
     NSInteger index = 1;
-    NSString *actorsString = json[[NSString stringWithFormat:@"%@_%ld",kActor,index]];
+    NSString *actorsString = json[[NSString stringWithFormat:@"%@_%ld",kActor,(long)index]];
     index++;
     
     while (index <= 3) {
-        NSString *nextActor = json[[NSString stringWithFormat:@"%@_%ld",kActor,index]];
+        NSString *nextActor = json[[NSString stringWithFormat:@"%@_%ld",kActor,(long)index]];
         if ([nextActor length])
         {
             actorsString = [actorsString stringByAppendingString:[NSString stringWithFormat:@", %@",nextActor]];

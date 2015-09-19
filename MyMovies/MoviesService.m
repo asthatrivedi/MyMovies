@@ -14,12 +14,10 @@
 #import "NetworkService.h"
 #import "Utils.h"
 
-NSString * const kBaseUrl = @"https://data.sfgov.org/resource/yitu-d5am.json?$limit=10";
+NSString * const kBaseUrl = @"https://data.sfgov.org/resource/yitu-d5am.json?";
 NSString * const kReloadUrl = @"https://data.sfgov.org/resource/yitu-d5am.json?$limit=10&$offset=10";
 NSString * const kLimitKey = @"$limit=%ld";
-NSString * const kOffsetKey = @"$offset=%ld";
-
-NSString * const kErrorKey = @"ERROR";
+NSString * const kOffsetKey = @"&$offset=%ld";
 
 NSInteger const kPageLimit = 10;
 
@@ -49,7 +47,7 @@ NSInteger const kPageLimit = 10;
 
 - (void)getMovies {
 
-    NSURL *url = [NSURL URLWithString:kBaseUrl];
+    NSURL *url = [NSURL URLWithString:[self prepareUrlIsReload:NO]];
     
     __weak NSManagedObjectContext *managedContext =
         ((AppDelegate *)[[UIApplication sharedApplication] delegate]).managedObjectContext;
@@ -67,6 +65,11 @@ NSInteger const kPageLimit = 10;
     else  {
         [self _searchMoviesFromServerWithUrl:url];
     }
+}
+
+- (void)loadMoreMovies {
+    NSURL *url = [NSURL URLWithString:[self prepareUrlIsReload:YES]];
+    [self _searchMoviesFromServerWithUrl:url];
 }
 
 
@@ -88,22 +91,23 @@ NSInteger const kPageLimit = 10;
         
         [managedContext save:&error];
         
+        if (!self.moviesViewModel) {
+            self.moviesViewModel = [[MovieListViewModel alloc] init];
+        }
+        [self.moviesViewModel viewModelWithMovieFetchObjects:self.movies];
+        [self _contentAddedNotificationForError:nil];
+
         NSString *errorString;
         if (error) {
-            NSLog(@"error %@", error.description);
+            NSLog(@"Database inster failure error %@", error.description);
             errorString = error.description;
         }
         else {
-            NSLog(@"success");
-            if (!self.moviesViewModel) {
-                self.moviesViewModel = [[MovieListViewModel alloc] init];
-            }
-            [self.moviesViewModel viewModelWithMovieFetchObjects:self.movies];
+            NSLog(@" Database insert success");
         }
-        [self _contentAddedNotificationForError:errorString];
         
     } withFailure:^(NSError *error) {
-        NSLog(@"Error: %@", error);
+        NSLog(@"Server Error: %@", error);
         
         [self _contentAddedNotificationForError:error.description];
     }];
@@ -114,17 +118,18 @@ NSInteger const kPageLimit = 10;
     return self.moviesViewModel;
 }
 
-//- (NSString *)prepareUrlIsReload:(BOOL)isReload {
-//    
-//    NSString *urlString = [NSString stringWithFormat:@"%@%@"];
-//
-//    return @"";
-//}
-//
-//- (NSString *)appendArguement:(NSString *)arguement WithValue:(NSString *)value toUrlString:(NSString *)urlString {
-//    
-//    return @"";
-//}
+- (NSString *)prepareUrlIsReload:(BOOL)isReload {
+    
+    NSString *limit = [NSString stringWithFormat:kLimitKey,(long)kPageLimit];
+    NSString *urlString = [NSString stringWithFormat:@"%@%@",kBaseUrl,limit];
+
+    if (isReload) {
+        NSString *offset = [NSString stringWithFormat:kOffsetKey,(unsigned long)[self.movies count]];
+        urlString = [urlString stringByAppendingString:offset];
+    }
+    return urlString;
+}
+
 
 #pragma mark - Provate Helper Methods
 

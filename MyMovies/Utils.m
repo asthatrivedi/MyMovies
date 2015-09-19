@@ -10,6 +10,7 @@
 
 NSString * const kMovieResultsKey = @"com.astha.MyMovies.MovieResults";
 NSString * const kUpdateContentKey = @"com.astha.MyMovies.UpdateContent";
+NSString * const kErrorKey = @"ERROR";
 
 @implementation Utils
 
