@@ -8,6 +8,8 @@
 
 #import <UIKit/UIKit.h>
 
+@class DetailItemViewModel;
+
 @interface DetailItemTableViewCell : UITableViewCell
 
 - (void)setupViewModel:(DetailItemViewModel *)inViewModel;
