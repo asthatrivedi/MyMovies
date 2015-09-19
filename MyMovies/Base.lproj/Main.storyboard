@@ -2,6 +2,7 @@
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7706" systemVersion="14F27" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="1We-9V-X4h">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7703"/>
+        <capability name="Alignment constraints to the first baseline" minToolsVersion="6.0"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
@@ -59,7 +60,6 @@
                                     <outlet property="actors" destination="yzA-PO-8kQ" id="Ptv-I3-xJ5"/>
                                     <outlet property="location" destination="DdN-ai-LVI" id="hX6-8X-4yp"/>
                                     <outlet property="movieTitleWithYear" destination="IhN-lJ-r2F" id="FJB-vZ-4Ls"/>
-                                    <segue destination="q4r-tX-Wl3" kind="show" identifier="showDetail" id="hL0-Ei-dGp"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>
@@ -75,22 +75,63 @@
             <point key="canvasLocation" x="316" y="335"/>
         </scene>
         <!--Movie Detail View Controller-->
-        <scene sceneID="HUb-FO-TEo">
+        <scene sceneID="jib-Xn-bMU">
             <objects>
-                <viewController id="q4r-tX-Wl3" customClass="MovieDetailViewController" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="Ubp-gN-H4c"/>
-                        <viewControllerLayoutGuide type="bottom" id="u7W-1Y-CDY"/>
-                    </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="k7r-fB-D8s">
+                <tableViewController id="1Vb-Vy-2Y8" customClass="MovieDetailViewController" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="49" sectionHeaderHeight="22" sectionFooterHeight="22" id="7ty-ud-7ix">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" red="0.40000000600000002" green="0.40000000600000002" blue="0.53731424825174812" alpha="1" colorSpace="calibratedRGB"/>
-                    </view>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="nGj-Jv-4l6" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <prototypes>
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="detailCell" rowHeight="49" id="24Y-qS-tK6" customClass="DetailItemTableViewCell">
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="24Y-qS-tK6" id="xVr-6y-Evu">
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Info Type" lineBreakMode="wordWrap" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cDm-48-eMo">
+                                            <rect key="frame" x="11" y="11" width="118" height="21"/>
+                                            <constraints>
+                                                <constraint firstAttribute="width" constant="118" id="GdM-eH-jzx"/>
+                                            </constraints>
+                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" text="Value" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6pc-g5-kMx">
+                                            <rect key="frame" x="137" y="11" width="452" height="21"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                    </subviews>
+                                    <constraints>
+                                        <constraint firstItem="cDm-48-eMo" firstAttribute="firstBaseline" secondItem="6pc-g5-kMx" secondAttribute="firstBaseline" id="ER1-yT-tlR"/>
+                                        <constraint firstItem="cDm-48-eMo" firstAttribute="top" secondItem="xVr-6y-Evu" secondAttribute="topMargin" constant="3" id="Hcs-2s-5Uk"/>
+                                        <constraint firstItem="cDm-48-eMo" firstAttribute="leading" secondItem="xVr-6y-Evu" secondAttribute="leadingMargin" constant="3" id="Pg6-fc-Ts9"/>
+                                        <constraint firstAttribute="trailingMargin" secondItem="6pc-g5-kMx" secondAttribute="trailing" constant="3" id="YV5-Mn-bcc"/>
+                                        <constraint firstAttribute="bottomMargin" secondItem="cDm-48-eMo" secondAttribute="bottom" constant="8.5" id="cZq-0H-FCf"/>
+                                        <constraint firstItem="6pc-g5-kMx" firstAttribute="leading" secondItem="cDm-48-eMo" secondAttribute="trailing" constant="8" symbolic="YES" id="jUo-0W-CSg"/>
+                                        <constraint firstItem="cDm-48-eMo" firstAttribute="baseline" secondItem="6pc-g5-kMx" secondAttribute="baseline" id="sxR-Wx-yYu"/>
+                                    </constraints>
+                                </tableViewCellContentView>
+                                <accessibility key="accessibilityConfiguration">
+                                    <accessibilityTraits key="traits" none="YES" notEnabled="YES"/>
+                                </accessibility>
+                                <connections>
+                                    <outlet property="infoType" destination="cDm-48-eMo" id="ege-mK-6FC"/>
+                                    <outlet property="value" destination="6pc-g5-kMx" id="Hgi-8f-OUb"/>
+                                </connections>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="1Vb-Vy-2Y8" id="gTf-cR-mYg"/>
+                            <outlet property="delegate" destination="1Vb-Vy-2Y8" id="6IT-uD-WcV"/>
+                        </connections>
+                    </tableView>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="8Jr-GE-wEQ" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1082" y="335"/>
+            <point key="canvasLocation" x="1029" y="335"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="7nt-1z-Uin">

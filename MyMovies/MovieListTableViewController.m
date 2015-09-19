@@ -8,6 +8,7 @@
 
 #import "MovieListTableViewController.h"
 
+#import "MovieDetailViewController.h"
 #import "MovieListTableViewCell.h"
 #import "MovieListViewModel.h"
 #import "MoviesService.h"
@@ -16,6 +17,7 @@
 @interface MovieListTableViewController ()
 
 @property (nonatomic, strong) MovieListViewModel *viewModel;
+@property (nonatomic, assign) NSInteger currentIndex;
 
 @end
 
@@ -57,6 +59,11 @@
     return cell;
 }
 
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    self.currentIndex = indexPath.row;
+    [self _showMovieDetailViewWithIndex:indexPath.row];
+}
+
 #pragma mark - Private Helper Methods
 
 
@@ -65,14 +72,10 @@
     [self.tableView reloadData];
 }
 
-
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
+- (void)_showMovieDetailViewWithIndex:(NSInteger)index {
+    MovieDetailViewController *controller = [self.storyboard instantiateViewControllerWithIdentifier:@"movieDetail"];
+    [controller setupViewModel:[self.viewModel.movieList objectAtIndex:index]];
+    [self.navigationController pushViewController:controller animated:YES];
 }
-
 
 @end

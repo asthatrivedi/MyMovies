@@ -8,6 +8,10 @@
 
 #import <UIKit/UIKit.h>
 
-@interface MovieDetailViewController : UIViewController
+@class MovieDetailViewModel;
+
+@interface MovieDetailViewController : UITableViewController
+
+- (void)setupViewModel:(MovieDetailViewModel *)inViewModel;
 
 @end

@@ -8,7 +8,13 @@
 
 #import "MovieDetailViewController.h"
 
+#import "DetailItemTableViewCell.h"
+#import "MovieDetailViewModel.h"
+
 @interface MovieDetailViewController ()
+
+@property (nonatomic, strong) MovieDetailViewModel *viewModel;
+@property (nonatomic, strong) NSArray *detailItems;
 
 @end
 
@@ -18,17 +24,33 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    self.title = @"Movie Name";
+    self.title = self.viewModel.title;
+}
+
+- (void)setupViewModel:(MovieDetailViewModel *)inViewModel {
+    self.viewModel = inViewModel;
+    self.detailItems = [inViewModel detailItemsFromViewModel];
+}
+
+#pragma mark - Table view data source
+
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
+    // Return the number of sections.
+    return 1;
+}
+
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
+    // Return the number of rows in the section.
+    return [self.detailItems count];
 }
 
 
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+    DetailItemTableViewCell *cell = (DetailItemTableViewCell *)[tableView dequeueReusableCellWithIdentifier:@"detailCell" forIndexPath:indexPath];
+    
+    [cell setupViewModel:[self.detailItems objectAtIndex:indexPath.row]];
+    
+    return cell;
 }
-
 
 @end

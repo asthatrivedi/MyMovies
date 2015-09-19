@@ -9,7 +9,7 @@
 #import "MovieListViewModel.h"
 
 #import "Movie.h"
-#import "MovieListCellViewModel.h"
+#import "MovieDetailViewModel.h"
 #import "MoviesService.h"
 #import "Utils.h"
 
@@ -39,7 +39,7 @@
     
     NSMutableArray *viewModels = [NSMutableArray array];
     for (Movie *inMovie in fetchObjects) {
-        [viewModels addObject:[MovieListCellViewModel movieListCellViewModel:inMovie]];
+        [viewModels addObject:[MovieDetailViewModel movieDetailViewModel:inMovie]];
     }
     
     return viewModels;

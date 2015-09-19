@@ -8,10 +8,10 @@
 
 #import <UIKit/UIKit.h>
 
-@class MovieListCellViewModel;
+@class MovieDetailViewModel;
 
 @interface MovieListTableViewCell : UITableViewCell
 
-- (void)setupMovieListCellWithViewModel:(MovieListCellViewModel *)viewModel;
+- (void)setupMovieListCellWithViewModel:(MovieDetailViewModel *)viewModel;
 
 @end

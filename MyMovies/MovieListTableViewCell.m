@@ -8,11 +8,11 @@
 
 #import "MovieListTableViewCell.h"
 
-#import "MovieListCellViewModel.h"
+#import "MovieDetailViewModel.h"
 
 @interface MovieListTableViewCell ()
 
-@property (nonatomic, strong) MovieListCellViewModel *viewModel;
+@property (nonatomic, strong) MovieDetailViewModel *viewModel;
 
 @property (weak, nonatomic) IBOutlet UILabel *movieTitleWithYear;
 @property (weak, nonatomic) IBOutlet UILabel *actors;
@@ -22,12 +22,12 @@
 
 @implementation MovieListTableViewCell
 
-- (void)setupMovieListCellWithViewModel:(MovieListCellViewModel *)viewModel {
+- (void)setupMovieListCellWithViewModel:(MovieDetailViewModel *)viewModel {
     
     self.viewModel = viewModel;
     
     self.movieTitleWithYear.text = [NSString stringWithFormat:@"%@ (%@)", viewModel.title, viewModel.year];
-    self.actors.text = viewModel.actor;
+    self.actors.text = viewModel.actors;
     self.location.text = viewModel.location;
 }
 
