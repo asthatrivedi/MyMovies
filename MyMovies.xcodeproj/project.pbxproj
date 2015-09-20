@@ -29,6 +29,7 @@
 		E0F3FEEE1BAD404C0062FB83 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E0F3FEED1BAD404C0062FB83 /* MapKit.framework */; };
 		E0F3FEF31BAE75AB0062FB83 /* Location.m in Sources */ = {isa = PBXBuildFile; fileRef = E0F3FEF21BAE75AB0062FB83 /* Location.m */; };
 		E0F3FEF51BAE91AA0062FB83 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E0F3FEF41BAE91AA0062FB83 /* CoreLocation.framework */; };
+		E0F3FEF81BAE96C20062FB83 /* ImageHeader.m in Sources */ = {isa = PBXBuildFile; fileRef = E0F3FEF71BAE96C20062FB83 /* ImageHeader.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -82,6 +83,8 @@
 		E0F3FEF11BAE75AA0062FB83 /* Location.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Location.h; sourceTree = "<group>"; };
 		E0F3FEF21BAE75AB0062FB83 /* Location.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Location.m; sourceTree = "<group>"; };
 		E0F3FEF41BAE91AA0062FB83 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
+		E0F3FEF61BAE96C20062FB83 /* ImageHeader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ImageHeader.h; sourceTree = "<group>"; };
+		E0F3FEF71BAE96C20062FB83 /* ImageHeader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ImageHeader.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -225,6 +228,8 @@
 				E07E10B31BA7DB3200052533 /* MovieDetailViewController.m */,
 				E0F3FEE81BAD3A540062FB83 /* MapHeaderView.h */,
 				E0F3FEE91BAD3A540062FB83 /* MapHeaderView.m */,
+				E0F3FEF61BAE96C20062FB83 /* ImageHeader.h */,
+				E0F3FEF71BAE96C20062FB83 /* ImageHeader.m */,
 			);
 			name = View;
 			sourceTree = "<group>";
@@ -343,6 +348,7 @@
 				E07E10B11BA7D78200052533 /* MovieListTableViewController.m in Sources */,
 				E08070F31BA95E8A000B67F3 /* MovieListTableViewCell.m in Sources */,
 				E0CD35831BAB950700F844DD /* Utils.m in Sources */,
+				E0F3FEF81BAE96C20062FB83 /* ImageHeader.m in Sources */,
 				E09BA5291BA68AC100F371B2 /* AppDelegate.m in Sources */,
 				E08070E51BA927F4000B67F3 /* MoviesService.m in Sources */,
 				E04E46761BA924FC00C4C328 /* Movie.m in Sources */,

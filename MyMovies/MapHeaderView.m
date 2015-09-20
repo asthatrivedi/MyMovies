@@ -13,6 +13,7 @@
 @interface MapHeaderView () <MKMapViewDelegate, CLLocationManagerDelegate>
 
 @property (nonatomic, weak) IBOutlet MKMapView *mapView;
+@property (nonatomic, weak) IBOutlet UILabel *locationLabel;
 
 @end
 
@@ -30,6 +31,8 @@
     MKPointAnnotation *point = [[MKPointAnnotation alloc] init];
     point.coordinate = coordinate;
     [self.mapView addAnnotation:point];
+    
+    self.locationLabel.text = location.location;
 }
 
 

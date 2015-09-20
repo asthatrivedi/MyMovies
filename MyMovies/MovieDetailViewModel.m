@@ -33,13 +33,21 @@
     
     NSMutableArray *detailItems = [NSMutableArray array];
     
-    [detailItems addObject:[DetailItemViewModel viewModelWithInfoType:@"Actors" andValue:self.actors]];
-    [detailItems addObject:[DetailItemViewModel viewModelWithInfoType:@"director" andValue:self.director]];
+    [detailItems addObject:[DetailItemViewModel viewModelWithInfoType:@"Actors" andValue:[self _setupTextWithNextLine:self.actors]]];
+    [detailItems addObject:[DetailItemViewModel viewModelWithInfoType:@"director" andValue:[self _setupTextWithNextLine:self.director]]];
     [detailItems addObject:[DetailItemViewModel viewModelWithInfoType:@"Production" andValue:self.production]];
     [detailItems addObject:[DetailItemViewModel viewModelWithInfoType:@"Year" andValue:self.year]];
-    [detailItems addObject:[DetailItemViewModel viewModelWithInfoType:@"Writer" andValue:self.writer]];
+    [detailItems addObject:[DetailItemViewModel viewModelWithInfoType:@"Writer" andValue:[self _setupTextWithNextLine:self.writer]]];
     
     return detailItems;
+}
+
+- (NSString *)_setupTextWithNextLine:(NSString *)text {
+    return [text stringByReplacingOccurrencesOfString:@", " withString:@",\n"];
+}
+
+- (void)downloadStreetViewImage {
+    
 }
 
 @end

@@ -23,7 +23,7 @@ NSString * const kReloadUrl = @"https://data.sfgov.org/resource/yitu-d5am.json?$
 NSString * const kLimitKey = @"$limit=%ld";
 NSString * const kOffsetKey = @"&$offset=%ld";
 
-NSString * const kPlaceImageUrl = @"https://maps.googleapis.com/maps/api/streetview?size=400x300&location=%@,%@&heading=151.78&pitch=-0.76&key=AIzaSyAmBUFhXk1XMEPTvcC7JefhF_LTehWKvXw";
+NSString * const kStreetViewUrl = @"https://maps.googleapis.com/maps/api/streetview?size=400x300&location=%ld,%ld&heading=151.78&pitch=-0.76&key=AIzaSyAmBUFhXk1XMEPTvcC7JefhF_LTehWKvXw";
 
 NSInteger const kPageLimit = 10;
 
@@ -86,6 +86,16 @@ NSInteger const kPageLimit = 10;
     NSURL *url = [NSURL URLWithString:[self prepareUrlIsReload:YES]];
     [self _searchMoviesFromServerWithUrl:url];
 }
+
+
+//- (void)_downloadStreetViewImageForLocation:(Location *)location {
+//    NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:kStreetViewUrl,[location.latitude doubleValue],[location.longitude doubleValue]]];
+//    [[NetworkService sharedService] operationWith:nil completionWithSuccess:^(id responseObject) {
+//        
+//    } withFailure:^(NSError *error) {
+//        
+//    }];
+//}
 
 
 - (void)_searchMoviesFromServerWithUrl:(NSURL *)url {

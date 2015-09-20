@@ -130,7 +130,7 @@ NSString * const kMovieEntity = @"Movie";
 + (NSString *)_getFullLocationAddress:(NSString *)address {
     
     if (address) {
-        return [NSString stringWithFormat:@"%@ %@", address, @"San Francisco"];
+        return [NSString stringWithFormat:@"%@ %@", address, @", San Francisco"];
     }
     else {
         return @"San Francisco";

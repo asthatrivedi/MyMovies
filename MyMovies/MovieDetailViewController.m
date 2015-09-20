@@ -9,8 +9,10 @@
 #import "MovieDetailViewController.h"
 
 #import "DetailItemTableViewCell.h"
+#import "ImageHeader.h"
 #import "MovieDetailViewModel.h"
 #import "MapHeaderView.h"
+#import "Utils.h"
 
 @interface MovieDetailViewController ()
 
@@ -26,6 +28,16 @@
     [super viewDidLoad];
     
     self.title = self.viewModel.title;
+    
+//    [[NSNotificationCenter defaultCenter] addObserver:self
+//                                             selector:@selector(_handleImageDownloadedNotif:)
+//                                                 name:kImageDownloadedKey
+//                                               object:nil];
+    
+//    [self _setupTableViewHeader];
+    
+    self.tableView.estimatedRowHeight = 49;
+    self.tableView.rowHeight = UITableViewAutomaticDimension;
 }
 
 - (void)setupViewModel:(MovieDetailViewModel *)inViewModel {
@@ -65,6 +77,19 @@
 
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
     return 244.f;
+}
+
+#pragma mark - Private Helper Methods
+
+- (void)_handleImageDownloadedNotif:(NSNotification *)notif {
+    
+}
+
+- (void)_setupTableViewHeader {
+    
+    ImageHeader *header = (ImageHeader *)[self.tableView dequeueReusableCellWithIdentifier:@"tableHeader"];
+    // setup image here.
+    self.tableView.tableHeaderView = header;
 }
 
 @end

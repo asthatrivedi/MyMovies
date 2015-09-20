@@ -9,7 +9,7 @@
 #import <Foundation/Foundation.h>
 
 extern NSString * const kMovieResultsKey;
-extern NSString * const kUpdateContentKey;
+extern NSString * const kImageDownloadedKey;
 extern NSString * const kErrorKey;
 
 typedef enum {
