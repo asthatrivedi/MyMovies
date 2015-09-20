@@ -52,7 +52,9 @@
 
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    MovieListTableViewCell *cell = (MovieListTableViewCell *)[tableView dequeueReusableCellWithIdentifier:@"Cell" forIndexPath:indexPath];
+    MovieListTableViewCell *cell =
+        (MovieListTableViewCell *)[tableView dequeueReusableCellWithIdentifier:@"Cell"
+                                                                  forIndexPath:indexPath];
     
     cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
     [cell setupMovieListCellWithViewModel:[self.viewModel.movieList objectAtIndex:indexPath.row]];
@@ -68,6 +70,45 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     self.currentIndex = indexPath.row;
     [self _showMovieDetailViewWithIndex:indexPath.row];
+}
+
+#pragma mark - Button Actions
+
+- (IBAction)_showActionSheetToSortData:(id)sender {
+    UIAlertController *actionSheet = [UIAlertController alertControllerWithTitle:nil message:nil preferredStyle:UIAlertControllerStyleActionSheet];
+    
+    [actionSheet addAction:[UIAlertAction actionWithTitle:@"Cancel" style:UIAlertActionStyleCancel handler:^(UIAlertAction *action) {
+        
+        [self dismissViewControllerAnimated:YES completion:^{
+        }];
+    }]];
+    
+    [actionSheet addAction:[UIAlertAction actionWithTitle:@"Distance" style:UIAlertActionStyleDestructive handler:^(UIAlertAction *action) {
+        
+        [[MoviesService sharedService] sortMoviesWithParameter:kSortParameterDistance];
+
+        [self dismissViewControllerAnimated:YES completion:^{
+        }];
+    }]];
+    
+    [actionSheet addAction:[UIAlertAction actionWithTitle:@"Movie Name" style:UIAlertActionStyleDestructive handler:^(UIAlertAction *action) {
+        
+        [[MoviesService sharedService] sortMoviesWithParameter:kSortParameterMovieName];
+
+        [self dismissViewControllerAnimated:YES completion:^{
+        }];
+    }]];
+    
+    [actionSheet addAction:[UIAlertAction actionWithTitle:@"Year" style:UIAlertActionStyleDestructive handler:^(UIAlertAction *action) {
+        
+        [[MoviesService sharedService] sortMoviesWithParameter:kSortParameterYear];
+
+        [self dismissViewControllerAnimated:YES completion:^{
+        }];
+    }]];
+    
+    // Present action sheet.
+    [self presentViewController:actionSheet animated:YES completion:nil];
 }
 
 #pragma mark - Private Helper Methods

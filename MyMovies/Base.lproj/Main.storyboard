@@ -68,7 +68,13 @@
                             <outlet property="delegate" destination="Zgd-iZ-8xw" id="U8v-HT-rCc"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="Root View Controller" id="imB-I6-wqB"/>
+                    <navigationItem key="navigationItem" title="Root View Controller" id="imB-I6-wqB">
+                        <barButtonItem key="rightBarButtonItem" title="Sort" id="FXR-Ws-7gW">
+                            <connections>
+                                <action selector="_showActionSheetToSortData:" destination="Zgd-iZ-8xw" id="3D4-N1-O5c"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="72V-VT-nVA" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

@@ -12,6 +12,12 @@ extern NSString * const kMovieResultsKey;
 extern NSString * const kUpdateContentKey;
 extern NSString * const kErrorKey;
 
+typedef enum {
+    kSortParameterDistance = 0,
+    kSortParameterMovieName,
+    kSortParameterYear
+}kSortParameter;
+
 @interface Utils : NSObject
 
 @end

@@ -7,12 +7,14 @@
 //
 
 #import "MoviesService.h"
+#import <MapKit/MapKit.h>
 
 #import "AppDelegate.h"
 #import "Movie.h"
+#import "MovieDetailViewModel.h"
 #import "MovieListViewModel.h"
 #import "NetworkService.h"
-#import "Utils.h"
+
 
 NSString * const kBaseUrl = @"https://data.sfgov.org/resource/yitu-d5am.json?";
 NSString * const kReloadUrl = @"https://data.sfgov.org/resource/yitu-d5am.json?$limit=10&$offset=10";
@@ -116,6 +118,40 @@ NSInteger const kPageLimit = 10;
 
 - (MovieListViewModel *)movieList {
     return self.moviesViewModel;
+}
+
+- (void)sortMoviesWithParameter:(kSortParameter)parameter {
+    
+    [self.moviesViewModel.movieList sortUsingComparator:^NSComparisonResult(id obj1, id obj2) {
+        MovieDetailViewModel *viewModel1 = (MovieDetailViewModel *)obj1;
+        MovieDetailViewModel *viewModel2 = (MovieDetailViewModel *)obj2;
+        
+        switch (parameter) {
+            case kSortParameterDistance:
+                return [viewModel1.title compare:viewModel2.title];
+
+            case kSortParameterMovieName:
+                return [viewModel1.title compare:viewModel2.title];
+            
+            case kSortParameterYear: {
+                NSInteger year1 = [viewModel1.year integerValue];
+                NSInteger year2 = [viewModel2.year integerValue];
+                if (year1 < year2) {
+                    return NSOrderedAscending;
+                }
+                else if (year2 < year1){
+                    return NSOrderedDescending;
+                }
+                else {
+                    return NSOrderedSame;
+                }
+            }
+            default:
+                break;
+        }
+    }];
+    
+    [self _contentAddedNotificationForError:nil];
 }
 
 - (NSString *)prepareUrlIsReload:(BOOL)isReload {

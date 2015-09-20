@@ -8,6 +8,8 @@
 
 #import <Foundation/Foundation.h>
 
+#import "Utils.h"
+
 @class MovieListViewModel;
 
 @interface MoviesService : NSObject
@@ -17,5 +19,6 @@
 - (void)getMovies;
 - (void)loadMoreMovies;
 - (MovieListViewModel *)movieList;
+- (void)sortMoviesWithParameter:(kSortParameter)parameter;
 
 @end

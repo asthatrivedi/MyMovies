@@ -10,7 +10,7 @@
 
 #import <MapKit/MapKit.h>
 
-@interface MapHeaderView () <MKMapViewDelegate>
+@interface MapHeaderView () <MKMapViewDelegate, CLLocationManagerDelegate>
 
 @property (nonatomic, weak) IBOutlet MKMapView *mapView;
 
@@ -19,7 +19,6 @@
 @implementation MapHeaderView
 
 - (void)setLocationFromAddressString:(NSString *)string {
-//    self.mapView.centerCoordinate = [self _getLocationFromAddressString:string];
     
     CLLocationCoordinate2D coordinate = [self _getLocationFromAddressString:string];
     
