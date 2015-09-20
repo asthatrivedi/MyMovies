@@ -9,6 +9,7 @@
 #import "MovieListTableViewCell.h"
 
 #import "MovieDetailViewModel.h"
+#import "Location.h"
 
 @interface MovieListTableViewCell ()
 
@@ -28,7 +29,7 @@
     
     self.movieTitleWithYear.text = [NSString stringWithFormat:@"%@ (%@)", viewModel.title, viewModel.year];
     self.actors.text = viewModel.actors;
-    self.location.text = viewModel.location;
+    self.location.text = viewModel.latlong.location;
 }
 
 @end

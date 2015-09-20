@@ -10,6 +10,7 @@
 
 #import "DetailItemViewModel.h"
 #import "Movie.h"
+#import "Location.h"
 
 @implementation MovieDetailViewModel
 
@@ -19,11 +20,11 @@
     cellViewModel.title = movie.title;
     cellViewModel.year = movie.year;
     cellViewModel.actors = movie.actors;
-    cellViewModel.location = [MovieDetailViewModel _getFullLocationAddress:movie.location];
     cellViewModel.director = movie.director;
     cellViewModel.production = movie.production;
     cellViewModel.writer = movie.writer;
     cellViewModel.movieId = movie.movieId;
+    cellViewModel.latlong = movie.latlong;
     
     return cellViewModel;
 }
@@ -39,16 +40,6 @@
     [detailItems addObject:[DetailItemViewModel viewModelWithInfoType:@"Writer" andValue:self.writer]];
     
     return detailItems;
-}
-
-+ (NSString *)_getFullLocationAddress:(NSString *)address {
-    
-    if (address) {
-        return [NSString stringWithFormat:@"%@ %@", address, @"San Francisco"];
-    }
-    else {
-        return @"San Francisco";
-    }
 }
 
 @end

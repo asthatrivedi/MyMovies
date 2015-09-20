@@ -21,6 +21,8 @@ NSString * const kReloadUrl = @"https://data.sfgov.org/resource/yitu-d5am.json?$
 NSString * const kLimitKey = @"$limit=%ld";
 NSString * const kOffsetKey = @"&$offset=%ld";
 
+NSString * const kPlaceImageUrl = @"https://maps.googleapis.com/maps/api/streetview?size=400x300&location=%@,%@&heading=151.78&pitch=-0.76&key=AIzaSyAmBUFhXk1XMEPTvcC7JefhF_LTehWKvXw";
+
 NSInteger const kPageLimit = 10;
 
 @interface MoviesService ()

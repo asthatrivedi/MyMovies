@@ -47,7 +47,8 @@
 
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    DetailItemTableViewCell *cell = (DetailItemTableViewCell *)[tableView dequeueReusableCellWithIdentifier:@"detailCell" forIndexPath:indexPath];
+    DetailItemTableViewCell *cell = (DetailItemTableViewCell *)[tableView dequeueReusableCellWithIdentifier:@"detailCell"
+                                                                                               forIndexPath:indexPath];
     
     [cell setupViewModel:[self.detailItems objectAtIndex:indexPath.row]];
     
@@ -57,7 +58,8 @@
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
     
     MapHeaderView *headerView = (MapHeaderView *)[tableView dequeueReusableCellWithIdentifier:@"mapHeader"];
-    [headerView setLocationFromAddressString:self.viewModel.location];
+    
+    [headerView setupLocation:self.viewModel.latlong];
     return headerView;
 }
 

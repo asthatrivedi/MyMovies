@@ -8,8 +8,10 @@
 
 #import <UIKit/UIKit.h>
 
+#import "Location.h"
+
 @interface MapHeaderView : UITableViewCell
 
-- (void)setLocationFromAddressString:(NSString *)string;
+- (void)setupLocation:(Location *)location;
 
 @end

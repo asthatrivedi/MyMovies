@@ -7,18 +7,21 @@
 //
 
 #import "Movie.h"
+#import "Location.h"
 
 
 @implementation Movie
 
 @dynamic actors;
 @dynamic director;
-@dynamic title;
-@dynamic production;
-@dynamic writer;
-@dynamic year;
+@dynamic latlong;
 @dynamic location;
 @dynamic movieId;
+@dynamic production;
+@dynamic title;
+@dynamic writer;
+@dynamic year;
+
 
 NSString * const kTitle = @"title";
 NSString * const kYear = @"release_year";
@@ -101,7 +104,7 @@ NSString * const kMovieEntity = @"Movie";
         // Add a new entry.
         inMovie =
             (Movie *)[NSEntityDescription insertNewObjectForEntityForName:kMovieEntity
-                                                      inManagedObjectContext:context];
+                                                    inManagedObjectContext:context];
         
         inMovie.title = resultJson[kTitle];
         inMovie.movieId = @(movieIdString.hash);
@@ -109,14 +112,29 @@ NSString * const kMovieEntity = @"Movie";
         inMovie.director = resultJson[kDirector];
         inMovie.production = resultJson[kProduction];
         inMovie.writer = resultJson[kWriter];
-        inMovie.location = resultJson[kLocation];
         inMovie.actors = [Movie _actorsStringFromJson:resultJson];
+        
+        Location *inLocation = [NSEntityDescription insertNewObjectForEntityForName:kLocationEntity
+                                                             inManagedObjectContext:context];
+        inLocation.location = [Movie _getFullLocationAddress:resultJson[kLocation]];
+        [inLocation setLatLongForCoordinate];
+        inMovie.latlong = inLocation;
     }
     else {
         inMovie = [results firstObject];
     }
     
     return inMovie;
+}
+
++ (NSString *)_getFullLocationAddress:(NSString *)address {
+    
+    if (address) {
+        return [NSString stringWithFormat:@"%@ %@", address, @"San Francisco"];
+    }
+    else {
+        return @"San Francisco";
+    }
 }
 
 

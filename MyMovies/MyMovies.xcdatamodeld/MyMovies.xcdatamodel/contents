@@ -1,16 +1,23 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <model userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="7701" systemVersion="14F27" minimumToolsVersion="Automatic" macOSVersion="Automatic" iOSVersion="Automatic">
+    <entity name="Location" representedClassName="Location" syncable="YES">
+        <attribute name="latitude" optional="YES" attributeType="Double" defaultValueString="0.0" syncable="YES"/>
+        <attribute name="location" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="longitude" optional="YES" attributeType="Double" defaultValueString="0.0" syncable="YES"/>
+        <relationship name="latlong" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Movie" inverseName="latlong" inverseEntity="Movie" syncable="YES"/>
+    </entity>
     <entity name="Movie" representedClassName="Movie" syncable="YES">
         <attribute name="actors" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="director" optional="YES" attributeType="String" syncable="YES"/>
-        <attribute name="location" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="movieId" optional="YES" attributeType="Integer 64" defaultValueString="0" syncable="YES"/>
         <attribute name="production" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="title" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="writer" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="year" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="latlong" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Location" inverseName="latlong" inverseEntity="Location" syncable="YES"/>
     </entity>
     <elements>
-        <element name="Movie" positionX="-299" positionY="-18" width="128" height="163"/>
+        <element name="Movie" positionX="-648" positionY="99" width="128" height="163"/>
+        <element name="Location" positionX="-297" positionY="45" width="128" height="103"/>
     </elements>
 </model>

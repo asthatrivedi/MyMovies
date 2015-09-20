@@ -30,13 +30,13 @@
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="actor_1,actor_2, actor_3" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yzA-PO-8kQ">
-                                            <rect key="frame" x="8" y="44" width="576" height="20.5"/>
+                                            <rect key="frame" x="8" y="44" width="576" height="20"/>
                                             <fontDescription key="fontDescription" name="HelveticaNeue-Italic" family="Helvetica Neue" pointSize="17"/>
                                             <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" text="Location" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DdN-ai-LVI">
-                                            <rect key="frame" x="8" y="72" width="576" height="25.5"/>
+                                            <rect key="frame" x="8" y="72" width="576" height="25"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                             <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                             <nil key="highlightedColor"/>
@@ -135,7 +135,7 @@
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <mapView clipsSubviews="YES" multipleTouchEnabled="YES" tag="12" contentMode="scaleToFill" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="99Z-Fx-oQg">
-                                            <rect key="frame" x="0.0" y="0.0" width="600" height="243.5"/>
+                                            <rect key="frame" x="0.0" y="23" width="600" height="197.5"/>
                                             <connections>
                                                 <outlet property="delegate" destination="VS0-1T-Efl" id="zds-GY-1fK"/>
                                             </connections>
@@ -144,8 +144,8 @@
                                     <constraints>
                                         <constraint firstItem="99Z-Fx-oQg" firstAttribute="leading" secondItem="q4F-oW-Gvg" secondAttribute="leadingMargin" constant="-8" id="75e-VQ-E8v"/>
                                         <constraint firstAttribute="trailingMargin" secondItem="99Z-Fx-oQg" secondAttribute="trailing" constant="-8" id="MiS-XU-0sa"/>
-                                        <constraint firstItem="99Z-Fx-oQg" firstAttribute="top" secondItem="q4F-oW-Gvg" secondAttribute="topMargin" constant="-8" id="SHA-8b-H5e"/>
-                                        <constraint firstAttribute="bottomMargin" secondItem="99Z-Fx-oQg" secondAttribute="bottom" constant="-8" id="jff-qY-jrN"/>
+                                        <constraint firstItem="99Z-Fx-oQg" firstAttribute="top" secondItem="q4F-oW-Gvg" secondAttribute="topMargin" constant="15" id="SHA-8b-H5e"/>
+                                        <constraint firstAttribute="bottomMargin" secondItem="99Z-Fx-oQg" secondAttribute="bottom" constant="15" id="jff-qY-jrN"/>
                                     </constraints>
                                 </tableViewCellContentView>
                                 <connections>

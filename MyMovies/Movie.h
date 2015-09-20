@@ -21,6 +21,7 @@
 @property (nonatomic, retain) NSString * year;
 @property (nonatomic, retain) NSString * location;
 @property (nonatomic, assign) NSNumber * movieId;
+@property (nonatomic, retain) Location *latlong;
 
 
 + (NSArray *)getMoviesFromCoreDataIfExistWithManageContext:(NSManagedObjectContext *)context;

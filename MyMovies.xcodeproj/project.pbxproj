@@ -27,6 +27,7 @@
 		E0F3FEE71BAD21BD0062FB83 /* DetailItemViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = E0F3FEE61BAD21BD0062FB83 /* DetailItemViewModel.m */; };
 		E0F3FEEA1BAD3A540062FB83 /* MapHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = E0F3FEE91BAD3A540062FB83 /* MapHeaderView.m */; };
 		E0F3FEEE1BAD404C0062FB83 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E0F3FEED1BAD404C0062FB83 /* MapKit.framework */; };
+		E0F3FEF31BAE75AB0062FB83 /* Location.m in Sources */ = {isa = PBXBuildFile; fileRef = E0F3FEF21BAE75AB0062FB83 /* Location.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -77,6 +78,8 @@
 		E0F3FEE81BAD3A540062FB83 /* MapHeaderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MapHeaderView.h; sourceTree = "<group>"; };
 		E0F3FEE91BAD3A540062FB83 /* MapHeaderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MapHeaderView.m; sourceTree = "<group>"; };
 		E0F3FEED1BAD404C0062FB83 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
+		E0F3FEF11BAE75AA0062FB83 /* Location.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Location.h; sourceTree = "<group>"; };
+		E0F3FEF21BAE75AB0062FB83 /* Location.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Location.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -128,6 +131,8 @@
 				E09BA52A1BA68AC100F371B2 /* MyMovies.xcdatamodeld */,
 				E04E46741BA924FC00C4C328 /* Movie.h */,
 				E04E46751BA924FC00C4C328 /* Movie.m */,
+				E0F3FEF11BAE75AA0062FB83 /* Location.h */,
+				E0F3FEF21BAE75AB0062FB83 /* Location.m */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -343,6 +348,7 @@
 				E07E10B71BA7E7DC00052533 /* NetworkService.m in Sources */,
 				E09BA5261BA68AC100F371B2 /* main.m in Sources */,
 				E08070EA1BA959DF000B67F3 /* MovieListViewModel.m in Sources */,
+				E0F3FEF31BAE75AB0062FB83 /* Location.m in Sources */,
 				E0F3FEEA1BAD3A540062FB83 /* MapHeaderView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
