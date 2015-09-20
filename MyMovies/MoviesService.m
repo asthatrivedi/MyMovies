@@ -8,8 +8,10 @@
 
 #import "MoviesService.h"
 #import <MapKit/MapKit.h>
+#import <CoreLocation/CoreLocation.h>
 
 #import "AppDelegate.h"
+#import "Location.h"
 #import "Movie.h"
 #import "MovieDetailViewModel.h"
 #import "MovieListViewModel.h"
@@ -25,10 +27,11 @@ NSString * const kPlaceImageUrl = @"https://maps.googleapis.com/maps/api/streetv
 
 NSInteger const kPageLimit = 10;
 
-@interface MoviesService ()
+@interface MoviesService () <CLLocationManagerDelegate>
 
 @property (nonatomic, strong) NSMutableArray *movies;
 @property (nonatomic, strong) MovieListViewModel *moviesViewModel;
+@property (nonatomic, strong) CLLocation *currentLocation;
 
 @end
 
@@ -47,6 +50,14 @@ NSInteger const kPageLimit = 10;
     });
     
     return sharedService;
+}
+
+- (void)setupCurrentLocation {
+    CLLocationManager *locationManager = [[CLLocationManager alloc] init];
+    locationManager.delegate = self;
+    locationManager.desiredAccuracy = kCLLocationAccuracyBest;
+    
+    [locationManager startUpdatingLocation];
 }
 
 - (void)getMovies {
@@ -129,8 +140,9 @@ NSInteger const kPageLimit = 10;
         MovieDetailViewModel *viewModel2 = (MovieDetailViewModel *)obj2;
         
         switch (parameter) {
-            case kSortParameterDistance:
-                return [viewModel1.title compare:viewModel2.title];
+            case kSortParameterDistance: {
+                return [self _compareLocation1:viewModel1.latlong withLcoation2:viewModel2.latlong];
+            }
 
             case kSortParameterMovieName:
                 return [viewModel1.title compare:viewModel2.title];
@@ -171,6 +183,26 @@ NSInteger const kPageLimit = 10;
 
 #pragma mark - Provate Helper Methods
 
+- (NSComparisonResult)_compareLocation1:(Location *)location1 withLcoation2:(Location *)location2 {
+    
+    CLLocationDegrees lat1 = [location1.latitude doubleValue];
+    CLLocationDegrees long1 = [location1.longitude doubleValue];
+    CLLocation *l1 = [[CLLocation alloc] initWithLatitude:lat1 longitude:long1];
+    
+    CLLocationDegrees lat2 = [location1.latitude doubleValue];
+    CLLocationDegrees long2 = [location1.longitude doubleValue];
+    CLLocation *l2 = [[CLLocation alloc] initWithLatitude:lat2 longitude:long2];
+    
+    if ([self.currentLocation distanceFromLocation:l1] < [self.currentLocation distanceFromLocation:l2]) {
+        return NSOrderedAscending;
+    }
+    else if ([self.currentLocation distanceFromLocation:l1] > [self.currentLocation distanceFromLocation:l2]) {
+        return NSOrderedDescending;
+    }
+
+    return NSOrderedSame;
+}
+
 - (void)_contentAddedNotificationForError:(NSString *)errorDescription {
     static NSNotification *notification = nil;
     static dispatch_once_t onceToken;
@@ -189,6 +221,20 @@ NSInteger const kPageLimit = 10;
                                                postingStyle:NSPostASAP
                                                coalesceMask:NSNotificationCoalescingOnName
                                                    forModes:nil];
+}
+
+#pragma mark - Core Location Delegate
+
+- (void)locationManager:(CLLocationManager *)manager
+    didUpdateToLocation:(CLLocation *)newLocation
+           fromLocation:(CLLocation *)oldLocation
+{
+    NSLog(@"didUpdateToLocation: %@", newLocation);
+    CLLocation *currentLocation = newLocation;
+    
+    if (currentLocation != nil) {
+        self.currentLocation = currentLocation;
+    }
 }
 
 

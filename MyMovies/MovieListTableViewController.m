@@ -83,7 +83,7 @@
         }];
     }]];
     
-    /* Haven't worked on Distance yet.
+    
     [actionSheet addAction:[UIAlertAction actionWithTitle:@"Distance" style:UIAlertActionStyleDestructive handler:^(UIAlertAction *action) {
         
         [[MoviesService sharedService] sortMoviesWithParameter:kSortParameterDistance];
@@ -91,7 +91,6 @@
         [self dismissViewControllerAnimated:YES completion:^{
         }];
     }]];
-     */
     
     [actionSheet addAction:[UIAlertAction actionWithTitle:@"Movie Name" style:UIAlertActionStyleDestructive handler:^(UIAlertAction *action) {
         

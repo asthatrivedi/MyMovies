@@ -19,7 +19,6 @@
 @property (nonatomic, retain) NSString * production;
 @property (nonatomic, retain) NSString * writer;
 @property (nonatomic, retain) NSString * year;
-@property (nonatomic, retain) NSString * location;
 @property (nonatomic, assign) NSNumber * movieId;
 @property (nonatomic, retain) Location * latlong;
 

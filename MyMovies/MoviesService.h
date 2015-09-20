@@ -19,6 +19,7 @@
 - (void)getMovies;
 - (void)loadMoreMovies;
 - (MovieListViewModel *)movieList;
+- (void)setupCurrentLocation;
 - (void)sortMoviesWithParameter:(kSortParameter)parameter;
 
 @end

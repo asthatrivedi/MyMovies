@@ -28,6 +28,7 @@
 		E0F3FEEA1BAD3A540062FB83 /* MapHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = E0F3FEE91BAD3A540062FB83 /* MapHeaderView.m */; };
 		E0F3FEEE1BAD404C0062FB83 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E0F3FEED1BAD404C0062FB83 /* MapKit.framework */; };
 		E0F3FEF31BAE75AB0062FB83 /* Location.m in Sources */ = {isa = PBXBuildFile; fileRef = E0F3FEF21BAE75AB0062FB83 /* Location.m */; };
+		E0F3FEF51BAE91AA0062FB83 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E0F3FEF41BAE91AA0062FB83 /* CoreLocation.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -80,6 +81,7 @@
 		E0F3FEED1BAD404C0062FB83 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
 		E0F3FEF11BAE75AA0062FB83 /* Location.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Location.h; sourceTree = "<group>"; };
 		E0F3FEF21BAE75AB0062FB83 /* Location.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Location.m; sourceTree = "<group>"; };
+		E0F3FEF41BAE91AA0062FB83 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -87,6 +89,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E0F3FEF51BAE91AA0062FB83 /* CoreLocation.framework in Frameworks */,
 				E0F3FEEE1BAD404C0062FB83 /* MapKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -140,10 +143,11 @@
 		E09BA5171BA68AC100F371B2 = {
 			isa = PBXGroup;
 			children = (
-				E0F3FEED1BAD404C0062FB83 /* MapKit.framework */,
 				E09BA5221BA68AC100F371B2 /* MyMovies */,
 				E09BA53F1BA68AC100F371B2 /* MyMoviesTests */,
 				E09BA5211BA68AC100F371B2 /* Products */,
+				E0F3FEF41BAE91AA0062FB83 /* CoreLocation.framework */,
+				E0F3FEED1BAD404C0062FB83 /* MapKit.framework */,
 			);
 			sourceTree = "<group>";
 		};
