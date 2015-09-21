@@ -15,9 +15,9 @@
 
 @property (nonatomic, strong) MovieDetailViewModel *viewModel;
 
-@property (weak, nonatomic) IBOutlet UILabel *movieTitleWithYear;
 @property (weak, nonatomic) IBOutlet UILabel *actors;
 @property (weak, nonatomic) IBOutlet UILabel *location;
+@property (weak, nonatomic) IBOutlet UILabel *movieTitleWithYear;
 
 @end
 

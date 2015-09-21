@@ -52,17 +52,12 @@ NSInteger const kPageLimit = 10;
     return sharedService;
 }
 
-- (void)setupCurrentLocation {
-    CLLocationManager *locationManager = [[CLLocationManager alloc] init];
-    locationManager.delegate = self;
-    locationManager.desiredAccuracy = kCLLocationAccuracyBest;
-    
-    [locationManager startUpdatingLocation];
-}
+#pragma mark - Public Methods
+
 
 - (void)getMovies {
 
-    NSURL *url = [NSURL URLWithString:[self prepareUrlIsReload:NO]];
+    NSURL *url = [NSURL URLWithString:[self _prepareUrlIsReload:NO]];
     
     __weak NSManagedObjectContext *managedContext =
         ((AppDelegate *)[[UIApplication sharedApplication] delegate]).managedObjectContext;
@@ -83,20 +78,112 @@ NSInteger const kPageLimit = 10;
 }
 
 - (void)loadMoreMovies {
-    NSURL *url = [NSURL URLWithString:[self prepareUrlIsReload:YES]];
+    NSURL *url = [NSURL URLWithString:[self _prepareUrlIsReload:YES]];
     [self _searchMoviesFromServerWithUrl:url];
 }
 
+- (MovieListViewModel *)movieList {
+    return self.moviesViewModel;
+}
 
-//- (void)_downloadStreetViewImageForLocation:(Location *)location {
-//    NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:kStreetViewUrl,[location.latitude doubleValue],[location.longitude doubleValue]]];
-//    [[NetworkService sharedService] operationWith:nil completionWithSuccess:^(id responseObject) {
-//        
-//    } withFailure:^(NSError *error) {
-//        
-//    }];
-//}
+- (void)setupCurrentLocation {
+    CLLocationManager *locationManager = [[CLLocationManager alloc] init];
+    locationManager.delegate = self;
+    locationManager.desiredAccuracy = kCLLocationAccuracyBest;
+    
+    [locationManager startUpdatingLocation];
+}
 
+- (void)sortMoviesWithParameter:(kSortParameter)parameter {
+    
+    [self.moviesViewModel.movieList sortUsingComparator:^NSComparisonResult(id obj1, id obj2) {
+        MovieDetailViewModel *viewModel1 = (MovieDetailViewModel *)obj1;
+        MovieDetailViewModel *viewModel2 = (MovieDetailViewModel *)obj2;
+        
+        switch (parameter) {
+            case kSortParameterDistance: {
+                return [self _compareLocation1:viewModel1.latlong withLcoation2:viewModel2.latlong];
+            }
+                
+            case kSortParameterMovieName:
+                return [viewModel1.title compare:viewModel2.title];
+                
+            case kSortParameterYear: {
+                NSInteger year1 = [viewModel1.year integerValue];
+                NSInteger year2 = [viewModel2.year integerValue];
+                if (year1 < year2) {
+                    return NSOrderedAscending;
+                }
+                else if (year2 < year1){
+                    return NSOrderedDescending;
+                }
+                else {
+                    return NSOrderedSame;
+                }
+            }
+            default:
+                break;
+        }
+    }];
+    
+    [self _contentAddedNotificationForError:nil];
+}
+
+
+#pragma mark - Private Helper Methods
+
+
+- (NSComparisonResult)_compareLocation1:(Location *)location1 withLcoation2:(Location *)location2 {
+    
+    CLLocationDegrees lat1 = [location1.latitude doubleValue];
+    CLLocationDegrees long1 = [location1.longitude doubleValue];
+    CLLocation *l1 = [[CLLocation alloc] initWithLatitude:lat1 longitude:long1];
+    
+    CLLocationDegrees lat2 = [location1.latitude doubleValue];
+    CLLocationDegrees long2 = [location1.longitude doubleValue];
+    CLLocation *l2 = [[CLLocation alloc] initWithLatitude:lat2 longitude:long2];
+    
+    if ([self.currentLocation distanceFromLocation:l1] < [self.currentLocation distanceFromLocation:l2]) {
+        return NSOrderedAscending;
+    }
+    else if ([self.currentLocation distanceFromLocation:l1] > [self.currentLocation distanceFromLocation:l2]) {
+        return NSOrderedDescending;
+    }
+    
+    return NSOrderedSame;
+}
+
+- (void)_contentAddedNotificationForError:(NSString *)errorDescription {
+    static NSNotification *notification = nil;
+    static dispatch_once_t onceToken;
+    
+    if (!errorDescription)
+        errorDescription = @"";
+    
+    dispatch_once(&onceToken, ^{
+        
+        notification = [NSNotification notificationWithName:kMovieResultsKey
+                                                     object:nil
+                                                   userInfo:@{kErrorKey : errorDescription}];
+    });
+    
+    [[NSNotificationQueue defaultQueue] enqueueNotification:notification
+                                               postingStyle:NSPostASAP
+                                               coalesceMask:NSNotificationCoalescingOnName
+                                                   forModes:nil];
+}
+
+- (NSString *)_prepareUrlIsReload:(BOOL)isReload {
+    
+    NSString *limit = [NSString stringWithFormat:kLimitKey,(long)kPageLimit];
+    NSString *urlString = [NSString stringWithFormat:@"%@%@",kBaseUrl,limit];
+    
+    if (isReload) {
+        NSString *offset = [NSString stringWithFormat:kOffsetKey,(unsigned long)[self.movies count]];
+        urlString = [urlString stringByAppendingString:offset];
+    }
+    return urlString;
+}
 
 - (void)_searchMoviesFromServerWithUrl:(NSURL *)url {
     [[NetworkService sharedService] operationWith:url completionWithSuccess:^(id responseObject) {
@@ -138,100 +225,6 @@ NSInteger const kPageLimit = 10;
     }];
 }
 
-
-- (MovieListViewModel *)movieList {
-    return self.moviesViewModel;
-}
-
-- (void)sortMoviesWithParameter:(kSortParameter)parameter {
-    
-    [self.moviesViewModel.movieList sortUsingComparator:^NSComparisonResult(id obj1, id obj2) {
-        MovieDetailViewModel *viewModel1 = (MovieDetailViewModel *)obj1;
-        MovieDetailViewModel *viewModel2 = (MovieDetailViewModel *)obj2;
-        
-        switch (parameter) {
-            case kSortParameterDistance: {
-                return [self _compareLocation1:viewModel1.latlong withLcoation2:viewModel2.latlong];
-            }
-
-            case kSortParameterMovieName:
-                return [viewModel1.title compare:viewModel2.title];
-            
-            case kSortParameterYear: {
-                NSInteger year1 = [viewModel1.year integerValue];
-                NSInteger year2 = [viewModel2.year integerValue];
-                if (year1 < year2) {
-                    return NSOrderedAscending;
-                }
-                else if (year2 < year1){
-                    return NSOrderedDescending;
-                }
-                else {
-                    return NSOrderedSame;
-                }
-            }
-            default:
-                break;
-        }
-    }];
-    
-    [self _contentAddedNotificationForError:nil];
-}
-
-- (NSString *)prepareUrlIsReload:(BOOL)isReload {
-    
-    NSString *limit = [NSString stringWithFormat:kLimitKey,(long)kPageLimit];
-    NSString *urlString = [NSString stringWithFormat:@"%@%@",kBaseUrl,limit];
-
-    if (isReload) {
-        NSString *offset = [NSString stringWithFormat:kOffsetKey,(unsigned long)[self.movies count]];
-        urlString = [urlString stringByAppendingString:offset];
-    }
-    return urlString;
-}
-
-
-#pragma mark - Provate Helper Methods
-
-- (NSComparisonResult)_compareLocation1:(Location *)location1 withLcoation2:(Location *)location2 {
-    
-    CLLocationDegrees lat1 = [location1.latitude doubleValue];
-    CLLocationDegrees long1 = [location1.longitude doubleValue];
-    CLLocation *l1 = [[CLLocation alloc] initWithLatitude:lat1 longitude:long1];
-    
-    CLLocationDegrees lat2 = [location1.latitude doubleValue];
-    CLLocationDegrees long2 = [location1.longitude doubleValue];
-    CLLocation *l2 = [[CLLocation alloc] initWithLatitude:lat2 longitude:long2];
-    
-    if ([self.currentLocation distanceFromLocation:l1] < [self.currentLocation distanceFromLocation:l2]) {
-        return NSOrderedAscending;
-    }
-    else if ([self.currentLocation distanceFromLocation:l1] > [self.currentLocation distanceFromLocation:l2]) {
-        return NSOrderedDescending;
-    }
-
-    return NSOrderedSame;
-}
-
-- (void)_contentAddedNotificationForError:(NSString *)errorDescription {
-    static NSNotification *notification = nil;
-    static dispatch_once_t onceToken;
-    
-    if (!errorDescription)
-        errorDescription = @"";
-    
-    dispatch_once(&onceToken, ^{
-        
-        notification = [NSNotification notificationWithName:kMovieResultsKey
-                                                     object:nil
-                                                   userInfo:@{kErrorKey : errorDescription}];
-    });
-    
-    [[NSNotificationQueue defaultQueue] enqueueNotification:notification
-                                               postingStyle:NSPostASAP
-                                               coalesceMask:NSNotificationCoalescingOnName
-                                                   forModes:nil];
-}
 
 #pragma mark - Core Location Delegate
 

@@ -82,6 +82,17 @@ NSString * const kMovieEntity = @"Movie";
 }
 
 
++ (NSString *)_getFullLocationAddress:(NSString *)address {
+    
+    if (address) {
+        return [NSString stringWithFormat:@"%@ %@", address, @", San Francisco"];
+    }
+    else {
+        return @"San Francisco";
+    }
+}
+
+
 + (Movie *)_parseIndividualMovieJson:(NSDictionary *)resultJson
                                index:(NSInteger)index
                        manageContext:(NSManagedObjectContext *)context {
@@ -126,16 +137,5 @@ NSString * const kMovieEntity = @"Movie";
     
     return inMovie;
 }
-
-+ (NSString *)_getFullLocationAddress:(NSString *)address {
-    
-    if (address) {
-        return [NSString stringWithFormat:@"%@ %@", address, @", San Francisco"];
-    }
-    else {
-        return @"San Francisco";
-    }
-}
-
 
 @end

@@ -21,15 +21,6 @@ NSString * const kLocationEntity = @"Location";
 @dynamic latlong;
 
 
-- (void)setLatLongForCoordinate {
-    
-    CLLocationCoordinate2D coordinate = [Location getLocationFromAddressString:self.location];
-    
-    self.latitude = @(coordinate.latitude);
-    self.longitude = @(coordinate.longitude);
-}
-
-
 + (CLLocationCoordinate2D)getLocationFromAddressString: (NSString*) addressStr {
     double latitude = 0, longitude = 0;
     NSString *esc_addr =  [addressStr stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
@@ -50,6 +41,14 @@ NSString * const kLocationEntity = @"Location";
     center.longitude = longitude;
     
     return center;
+}
+
+- (void)setLatLongForCoordinate {
+    
+    CLLocationCoordinate2D coordinate = [Location getLocationFromAddressString:self.location];
+    
+    self.latitude = @(coordinate.latitude);
+    self.longitude = @(coordinate.longitude);
 }
 
 

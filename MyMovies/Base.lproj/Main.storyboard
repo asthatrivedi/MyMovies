@@ -70,6 +70,7 @@
                     </tableView>
                     <navigationItem key="navigationItem" title="Root View Controller" id="imB-I6-wqB">
                         <barButtonItem key="rightBarButtonItem" title="Sort" id="FXR-Ws-7gW">
+                            <color key="tintColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                             <connections>
                                 <action selector="_showActionSheetToSortData:" destination="Zgd-iZ-8xw" id="3D4-N1-O5c"/>
                             </connections>
@@ -219,6 +220,10 @@
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="2TO-2i-vlx">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
+                        <color key="barTintColor" red="0.0" green="0.60784313725490191" blue="0.93333333333333335" alpha="1" colorSpace="calibratedRGB"/>
+                        <textAttributes key="titleTextAttributes">
+                            <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                        </textAttributes>
                     </navigationBar>
                     <connections>
                         <segue destination="Zgd-iZ-8xw" kind="relationship" relationship="rootViewController" id="rbt-GL-T5E"/>

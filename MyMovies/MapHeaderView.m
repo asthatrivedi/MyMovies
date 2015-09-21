@@ -12,8 +12,8 @@
 
 @interface MapHeaderView () <MKMapViewDelegate, CLLocationManagerDelegate>
 
-@property (nonatomic, weak) IBOutlet MKMapView *mapView;
 @property (nonatomic, weak) IBOutlet UILabel *locationLabel;
+@property (nonatomic, weak) IBOutlet MKMapView *mapView;
 
 @end
 

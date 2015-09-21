@@ -8,9 +8,10 @@
 
 #import "Utils.h"
 
-NSString * const kMovieResultsKey = @"com.astha.MyMovies.MovieResults";
-NSString * const kImageDownloadedKey = @"com.astha.MyMovies.ImageDownloaded";
+NSString * const kDetailIdentifier = @"detailCell";
 NSString * const kErrorKey = @"ERROR";
+NSString * const kMovieDetailIdentifier = @"movieDetail";
+NSString * const kMovieResultsKey = @"com.astha.MyMovies.MovieResults";
 
 @implementation Utils
 

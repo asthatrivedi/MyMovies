@@ -9,12 +9,16 @@
 #import "MovieDetailViewController.h"
 
 #import "DetailItemTableViewCell.h"
-#import "ImageHeader.h"
 #import "MovieDetailViewModel.h"
 #import "MapHeaderView.h"
 #import "Utils.h"
 
-NSInteger const kSectionHeaderHeight = 244.f;
+NSString * const kDetailCellIdentifier = @"detailCell";
+NSInteger const kDetailEstimatedRowHeight = 49;
+NSString * const kDetailMapHeaderIdentifier = @"mapHeader";
+NSInteger const kDetailNumberOfSections = 1;
+NSInteger const kDetailSectionHeaderHeight = 244.f;
+
 
 @interface MovieDetailViewController ()
 
@@ -22,6 +26,7 @@ NSInteger const kSectionHeaderHeight = 244.f;
 @property (nonatomic, strong) NSArray *detailItems;
 
 @end
+
 
 @implementation MovieDetailViewController
 
@@ -31,7 +36,7 @@ NSInteger const kSectionHeaderHeight = 244.f;
     
     self.title = self.viewModel.title;
     
-    self.tableView.estimatedRowHeight = 49;
+    self.tableView.estimatedRowHeight = kDetailEstimatedRowHeight;
     self.tableView.rowHeight = UITableViewAutomaticDimension;
 }
 
@@ -43,18 +48,18 @@ NSInteger const kSectionHeaderHeight = 244.f;
 #pragma mark - Table view data source
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-    // Return the number of sections.
-    return 1;
+    
+    return kDetailNumberOfSections;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    // Return the number of rows in the section.
+    
     return [self.detailItems count];
 }
 
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    DetailItemTableViewCell *cell = (DetailItemTableViewCell *)[tableView dequeueReusableCellWithIdentifier:@"detailCell"
+    DetailItemTableViewCell *cell = (DetailItemTableViewCell *)[tableView dequeueReusableCellWithIdentifier:kDetailCellIdentifier
                                                                                                forIndexPath:indexPath];
     
     [cell setupViewModel:[self.detailItems objectAtIndex:indexPath.row]];
@@ -64,26 +69,14 @@ NSInteger const kSectionHeaderHeight = 244.f;
 
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
     
-    MapHeaderView *headerView = (MapHeaderView *)[tableView dequeueReusableCellWithIdentifier:@"mapHeader"];
+    MapHeaderView *headerView = (MapHeaderView *)[tableView dequeueReusableCellWithIdentifier:kDetailMapHeaderIdentifier];
     [headerView setupLocation:self.viewModel.latlong];
     return headerView;
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
-    return kSectionHeaderHeight;
+    return kDetailSectionHeaderHeight;
 }
 
-#pragma mark - Private Helper Methods
-
-- (void)_handleImageDownloadedNotif:(NSNotification *)notif {
-    
-}
-
-- (void)_setupTableViewHeader {
-    
-    ImageHeader *header = (ImageHeader *)[self.tableView dequeueReusableCellWithIdentifier:@"tableHeader"];
-    // setup image here.
-    self.tableView.tableHeaderView = header;
-}
 
 @end

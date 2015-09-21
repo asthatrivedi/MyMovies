@@ -7,10 +7,14 @@
 //
 
 #import <Foundation/Foundation.h>
+#import <UIKit/UIKit.h>
 
-extern NSString * const kMovieResultsKey;
-extern NSString * const kImageDownloadedKey;
+extern NSString * const kDetailIdentifier;
 extern NSString * const kErrorKey;
+extern NSString * const kMovieDetailIdentifier;
+extern NSString * const kMovieResultsKey;
+
+#define kSystemTintColor [UIColor whiteColor]
 
 typedef enum {
     kSortParameterDistance = 0,

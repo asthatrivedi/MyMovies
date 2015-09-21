@@ -14,55 +14,71 @@
 #import "MovieListTableViewCell.h"
 #import "MovieListViewModel.h"
 #import "MoviesService.h"
-#import "NavigationAnimator.h"
 #import "Utils.h"
+
+NSString * const kActionSheetCancel = @"Cancel";
+NSString * const kActionSheetDistance = @"Distance";
+NSString * const kActionSheetMovie = @"Movie Name";
+NSString * const kActionSheetYear = @"Year";
+
+NSString * const kError = @"ERROR";
+NSString * const kErrorMessage = @"No Movies Playing in your area.";
+NSInteger const kEstimatedRowHeight = 111;
+NSInteger const kNumberOfSections = 1;
+NSString * const kOkTitle = @"OK";
+NSString * const kScreenTitle = @"Movies";
+NSString * const kTableCellIdentifier = @"Cell";
+
 
 @interface MovieListTableViewController ()
 
-@property (nonatomic, strong) MovieListViewModel *viewModel;
 @property (nonatomic, assign) NSInteger currentIndex;
 @property (nonatomic, strong) CustomTransitionController *customTransition;
 @property (nonatomic, assign) BOOL isLoadingMoreResults;
-@property (nonatomic, strong) NavigationAnimator *animator;
+@property (nonatomic, strong) MovieListViewModel *viewModel;
 
 @end
+
 
 @implementation MovieListTableViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    self.title = @"Movies";
+    self.title = kScreenTitle;
     self.navigationController.delegate = self;
+    self.navigationController.navigationBar.tintColor = kSystemTintColor;
+    self.navigationItem.titleView.tintColor = kSystemTintColor;
     
     self.customTransition = [[CustomTransitionController alloc] init];
-    //self.animator = [[NavigationAnimator alloc] init];
     
     [[NSNotificationCenter defaultCenter] addObserver:self
                                              selector:@selector(_handleUpdateDataNotification:)
                                                  name:kMovieResultsKey
                                                object:nil];
-    self.tableView.estimatedRowHeight = 111;
+    
+    self.tableView.estimatedRowHeight = kEstimatedRowHeight;
     self.tableView.rowHeight = UITableViewAutomaticDimension;
 }
 
 
 #pragma mark - Table view data source
 
+
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-    // Return the number of sections.
-    return 1;
+    
+    return kNumberOfSections;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    // Return the number of rows in the section.
+    
     return [self.viewModel.movieList count];
 }
 
-
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+    
     MovieListTableViewCell *cell =
-        (MovieListTableViewCell *)[tableView dequeueReusableCellWithIdentifier:@"Cell"
+        (MovieListTableViewCell *)[tableView dequeueReusableCellWithIdentifier:kTableCellIdentifier
                                                                   forIndexPath:indexPath];
     
     cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
@@ -76,24 +92,28 @@
     return cell;
 }
 
+
+#pragma mark - Table view Delegate
+
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     self.currentIndex = indexPath.row;
     [self _showMovieDetailViewWithIndex:indexPath.row];
 }
+
 
 #pragma mark - Button Actions
 
 - (IBAction)_showActionSheetToSortData:(id)sender {
     UIAlertController *actionSheet = [UIAlertController alertControllerWithTitle:nil message:nil preferredStyle:UIAlertControllerStyleActionSheet];
     
-    [actionSheet addAction:[UIAlertAction actionWithTitle:@"Cancel" style:UIAlertActionStyleCancel handler:^(UIAlertAction *action) {
+    [actionSheet addAction:[UIAlertAction actionWithTitle:kActionSheetCancel style:UIAlertActionStyleCancel handler:^(UIAlertAction *action) {
         
         [self dismissViewControllerAnimated:YES completion:^{
         }];
     }]];
     
     
-    [actionSheet addAction:[UIAlertAction actionWithTitle:@"Distance" style:UIAlertActionStyleDestructive handler:^(UIAlertAction *action) {
+    [actionSheet addAction:[UIAlertAction actionWithTitle:kActionSheetDistance style:UIAlertActionStyleDestructive handler:^(UIAlertAction *action) {
         
         [[MoviesService sharedService] sortMoviesWithParameter:kSortParameterDistance];
 
@@ -101,7 +121,7 @@
         }];
     }]];
     
-    [actionSheet addAction:[UIAlertAction actionWithTitle:@"Movie Name" style:UIAlertActionStyleDestructive handler:^(UIAlertAction *action) {
+    [actionSheet addAction:[UIAlertAction actionWithTitle:kActionSheetMovie style:UIAlertActionStyleDestructive handler:^(UIAlertAction *action) {
         
         [[MoviesService sharedService] sortMoviesWithParameter:kSortParameterMovieName];
 
@@ -109,7 +129,7 @@
         }];
     }]];
     
-    [actionSheet addAction:[UIAlertAction actionWithTitle:@"Year" style:UIAlertActionStyleDestructive handler:^(UIAlertAction *action) {
+    [actionSheet addAction:[UIAlertAction actionWithTitle:kActionSheetYear style:UIAlertActionStyleDestructive handler:^(UIAlertAction *action) {
         
         [[MoviesService sharedService] sortMoviesWithParameter:kSortParameterYear];
 
@@ -139,7 +159,7 @@
         [self.customTransition attachToViewController:toVC];
     }
     
-    return nil;//self.animator;
+    return nil;
 }
 
 
@@ -154,10 +174,10 @@
     self.isLoadingMoreResults = NO;
     
     if ([errorString length]) {
-        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"ERROR"
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:kError
                                                         message:errorString
                                                        delegate:self
-                                              cancelButtonTitle:@"OK"
+                                              cancelButtonTitle:kOkTitle
                                               otherButtonTitles:nil];
         [alert show];
     }
@@ -165,9 +185,9 @@
         self.viewModel = [[MoviesService sharedService] movieList];
         if ([self.viewModel.movieList count] == 0) {
             UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@""
-                                                            message:@"No Movies Playing in your area."
+                                                            message:kErrorMessage
                                                            delegate:self
-                                                  cancelButtonTitle:@"OK"
+                                                  cancelButtonTitle:kOkTitle
                                                   otherButtonTitles:nil];
             [alert show];
         }
@@ -180,7 +200,7 @@
 }
 
 - (void)_showMovieDetailViewWithIndex:(NSInteger)index {
-    MovieDetailViewController *controller = [self.storyboard instantiateViewControllerWithIdentifier:@"movieDetail"];
+    MovieDetailViewController *controller = [self.storyboard instantiateViewControllerWithIdentifier:kMovieDetailIdentifier];
     [controller setupViewModel:[self.viewModel.movieList objectAtIndex:index]];
     
     [self.navigationController pushViewController:controller animated:YES];

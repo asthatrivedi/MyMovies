@@ -20,6 +20,7 @@
     [self _setupGestureRecognizer:viewController.view];
 }
 
+#pragma mark - Private Helper Methods
 
 - (void)_setupGestureRecognizer:(UIView *)view {
     [view addGestureRecognizer:[[UIPanGestureRecognizer alloc] initWithTarget:self

@@ -16,13 +16,12 @@
 
 @property (nonatomic, strong) NSString * actors;
 @property (nonatomic, strong) NSString * director;
-@property (nonatomic, strong) NSString * title;
+@property (nonatomic, strong) Location * latlong;
+@property (nonatomic, strong) NSNumber * movieId;
 @property (nonatomic, strong) NSString * production;
+@property (nonatomic, strong) NSString * title;
 @property (nonatomic, strong) NSString * writer;
 @property (nonatomic, strong) NSString * year;
-@property (nonatomic, strong) NSNumber * movieId;
-@property (nonatomic, strong) Location * latlong;
-@property (nonatomic, strong) UIImage *streetViewImage;
 
 + (MovieDetailViewModel *)movieDetailViewModel:(Movie *)movie;
 
