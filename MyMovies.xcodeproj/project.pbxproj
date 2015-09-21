@@ -30,6 +30,9 @@
 		E0F3FEF31BAE75AB0062FB83 /* Location.m in Sources */ = {isa = PBXBuildFile; fileRef = E0F3FEF21BAE75AB0062FB83 /* Location.m */; };
 		E0F3FEF51BAE91AA0062FB83 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E0F3FEF41BAE91AA0062FB83 /* CoreLocation.framework */; };
 		E0F3FEF81BAE96C20062FB83 /* ImageHeader.m in Sources */ = {isa = PBXBuildFile; fileRef = E0F3FEF71BAE96C20062FB83 /* ImageHeader.m */; };
+		E0F3FEFB1BAF86190062FB83 /* NavigationAnimator.m in Sources */ = {isa = PBXBuildFile; fileRef = E0F3FEFA1BAF86190062FB83 /* NavigationAnimator.m */; };
+		E0F3FEFD1BAF86810062FB83 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E0F3FEFC1BAF86810062FB83 /* CoreGraphics.framework */; };
+		E0F3FF011BAF98C70062FB83 /* CustomTransitionController.m in Sources */ = {isa = PBXBuildFile; fileRef = E0F3FF001BAF98C70062FB83 /* CustomTransitionController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -85,6 +88,11 @@
 		E0F3FEF41BAE91AA0062FB83 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
 		E0F3FEF61BAE96C20062FB83 /* ImageHeader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ImageHeader.h; sourceTree = "<group>"; };
 		E0F3FEF71BAE96C20062FB83 /* ImageHeader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ImageHeader.m; sourceTree = "<group>"; };
+		E0F3FEF91BAF86190062FB83 /* NavigationAnimator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NavigationAnimator.h; sourceTree = "<group>"; };
+		E0F3FEFA1BAF86190062FB83 /* NavigationAnimator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NavigationAnimator.m; sourceTree = "<group>"; };
+		E0F3FEFC1BAF86810062FB83 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
+		E0F3FEFF1BAF98C70062FB83 /* CustomTransitionController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CustomTransitionController.h; sourceTree = "<group>"; };
+		E0F3FF001BAF98C70062FB83 /* CustomTransitionController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CustomTransitionController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -92,6 +100,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E0F3FEFD1BAF86810062FB83 /* CoreGraphics.framework in Frameworks */,
 				E0F3FEF51BAE91AA0062FB83 /* CoreLocation.framework in Frameworks */,
 				E0F3FEEE1BAD404C0062FB83 /* MapKit.framework in Frameworks */,
 			);
@@ -146,6 +155,7 @@
 		E09BA5171BA68AC100F371B2 = {
 			isa = PBXGroup;
 			children = (
+				E0F3FEFC1BAF86810062FB83 /* CoreGraphics.framework */,
 				E09BA5221BA68AC100F371B2 /* MyMovies */,
 				E09BA53F1BA68AC100F371B2 /* MyMoviesTests */,
 				E09BA5211BA68AC100F371B2 /* Products */,
@@ -173,6 +183,7 @@
 				E08070E71BA959BE000B67F3 /* View Model */,
 				E0F3FEE41BAD1D510062FB83 /* Utils */,
 				E08070E61BA92842000B67F3 /* Services */,
+				E0F3FEFE1BAF98A20062FB83 /* Custom Animator */,
 				E0985C2E1BABD73900DB8968 /* Model */,
 				E09BA5301BA68AC100F371B2 /* Main.storyboard */,
 				E09BA5331BA68AC100F371B2 /* Images.xcassets */,
@@ -241,6 +252,17 @@
 				E0CD35821BAB950700F844DD /* Utils.m */,
 			);
 			name = Utils;
+			sourceTree = "<group>";
+		};
+		E0F3FEFE1BAF98A20062FB83 /* Custom Animator */ = {
+			isa = PBXGroup;
+			children = (
+				E0F3FEF91BAF86190062FB83 /* NavigationAnimator.h */,
+				E0F3FEFA1BAF86190062FB83 /* NavigationAnimator.m */,
+				E0F3FEFF1BAF98C70062FB83 /* CustomTransitionController.h */,
+				E0F3FF001BAF98C70062FB83 /* CustomTransitionController.m */,
+			);
+			name = "Custom Animator";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -349,12 +371,14 @@
 				E08070F31BA95E8A000B67F3 /* MovieListTableViewCell.m in Sources */,
 				E0CD35831BAB950700F844DD /* Utils.m in Sources */,
 				E0F3FEF81BAE96C20062FB83 /* ImageHeader.m in Sources */,
+				E0F3FEFB1BAF86190062FB83 /* NavigationAnimator.m in Sources */,
 				E09BA5291BA68AC100F371B2 /* AppDelegate.m in Sources */,
 				E08070E51BA927F4000B67F3 /* MoviesService.m in Sources */,
 				E04E46761BA924FC00C4C328 /* Movie.m in Sources */,
 				E07E10B41BA7DB3200052533 /* MovieDetailViewController.m in Sources */,
 				E09BA52C1BA68AC100F371B2 /* MyMovies.xcdatamodeld in Sources */,
 				E0F3FEE71BAD21BD0062FB83 /* DetailItemViewModel.m in Sources */,
+				E0F3FF011BAF98C70062FB83 /* CustomTransitionController.m in Sources */,
 				E07E10B71BA7E7DC00052533 /* NetworkService.m in Sources */,
 				E09BA5261BA68AC100F371B2 /* main.m in Sources */,
 				E08070EA1BA959DF000B67F3 /* MovieListViewModel.m in Sources */,

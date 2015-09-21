@@ -7,18 +7,23 @@
 //
 
 #import "MovieListTableViewController.h"
+#import <CoreGraphics/CoreGraphics.h>
 
+#import "CustomTransitionController.h"
 #import "MovieDetailViewController.h"
 #import "MovieListTableViewCell.h"
 #import "MovieListViewModel.h"
 #import "MoviesService.h"
+#import "NavigationAnimator.h"
 #import "Utils.h"
 
 @interface MovieListTableViewController ()
 
 @property (nonatomic, strong) MovieListViewModel *viewModel;
 @property (nonatomic, assign) NSInteger currentIndex;
+@property (nonatomic, strong) CustomTransitionController *customTransition;
 @property (nonatomic, assign) BOOL isLoadingMoreResults;
+@property (nonatomic, strong) NavigationAnimator *animator;
 
 @end
 
@@ -28,6 +33,10 @@
     [super viewDidLoad];
     
     self.title = @"Movies";
+    self.navigationController.delegate = self;
+    
+    self.customTransition = [[CustomTransitionController alloc] init];
+    //self.animator = [[NavigationAnimator alloc] init];
     
     [[NSNotificationCenter defaultCenter] addObserver:self
                                              selector:@selector(_handleUpdateDataNotification:)
@@ -112,6 +121,28 @@
     [self presentViewController:actionSheet animated:YES completion:nil];
 }
 
+#pragma mark - Navigation Animation Methods
+
+
+- (id <UIViewControllerInteractiveTransitioning>)navigationController:(UINavigationController *)navigationController
+                          interactionControllerForAnimationController:(id <UIViewControllerAnimatedTransitioning>) animationController {
+    
+    return self.customTransition.transitionInProgress ? self.customTransition : nil;
+}
+
+- (id <UIViewControllerAnimatedTransitioning>)navigationController:(UINavigationController *)navigationController
+                                   animationControllerForOperation:(UINavigationControllerOperation)operation
+                                                fromViewController:(UIViewController *)fromVC
+                                                  toViewController:(UIViewController *)toVC {
+    
+    if (operation == UINavigationControllerOperationPush) {
+        [self.customTransition attachToViewController:toVC];
+    }
+    
+    return nil;//self.animator;
+}
+
+
 #pragma mark - Private Helper Methods
 
 
@@ -151,6 +182,7 @@
 - (void)_showMovieDetailViewWithIndex:(NSInteger)index {
     MovieDetailViewController *controller = [self.storyboard instantiateViewControllerWithIdentifier:@"movieDetail"];
     [controller setupViewModel:[self.viewModel.movieList objectAtIndex:index]];
+    
     [self.navigationController pushViewController:controller animated:YES];
 }
 

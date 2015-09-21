@@ -14,6 +14,8 @@
 #import "MapHeaderView.h"
 #import "Utils.h"
 
+NSInteger const kSectionHeaderHeight = 244.f;
+
 @interface MovieDetailViewController ()
 
 @property (nonatomic, strong) MovieDetailViewModel *viewModel;
@@ -28,13 +30,6 @@
     [super viewDidLoad];
     
     self.title = self.viewModel.title;
-    
-//    [[NSNotificationCenter defaultCenter] addObserver:self
-//                                             selector:@selector(_handleImageDownloadedNotif:)
-//                                                 name:kImageDownloadedKey
-//                                               object:nil];
-    
-//    [self _setupTableViewHeader];
     
     self.tableView.estimatedRowHeight = 49;
     self.tableView.rowHeight = UITableViewAutomaticDimension;
@@ -70,13 +65,12 @@
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
     
     MapHeaderView *headerView = (MapHeaderView *)[tableView dequeueReusableCellWithIdentifier:@"mapHeader"];
-    
     [headerView setupLocation:self.viewModel.latlong];
     return headerView;
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
-    return 244.f;
+    return kSectionHeaderHeight;
 }
 
 #pragma mark - Private Helper Methods

@@ -8,6 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-@interface MovieListTableViewController : UITableViewController
+@interface MovieListTableViewController : UITableViewController <UIViewControllerTransitioningDelegate, UINavigationControllerDelegate>
+
 
 @end
