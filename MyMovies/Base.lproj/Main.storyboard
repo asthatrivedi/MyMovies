@@ -151,15 +151,15 @@
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <mapView clipsSubviews="YES" multipleTouchEnabled="YES" tag="12" contentMode="scaleToFill" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="99Z-Fx-oQg">
-                                            <rect key="frame" x="0.0" y="23" width="600" height="198"/>
+                                            <rect key="frame" x="20" y="23" width="561" height="198"/>
                                             <connections>
                                                 <outlet property="delegate" destination="VS0-1T-Efl" id="zds-GY-1fK"/>
                                             </connections>
                                         </mapView>
                                         <visualEffectView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="RX2-ky-A4n">
-                                            <rect key="frame" x="0.0" y="178" width="600" height="43.5"/>
+                                            <rect key="frame" x="20" y="178" width="561" height="43.5"/>
                                             <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="q1J-7b-Scy">
-                                                <rect key="frame" x="0.0" y="0.0" width="600" height="43.5"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="561" height="43.5"/>
                                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                 <subviews>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="stv-Wb-td8">
@@ -171,7 +171,7 @@
                                                 </subviews>
                                                 <constraints>
                                                     <constraint firstItem="stv-Wb-td8" firstAttribute="top" secondItem="q1J-7b-Scy" secondAttribute="top" constant="11" id="3zx-lW-EJg"/>
-                                                    <constraint firstAttribute="trailing" secondItem="stv-Wb-td8" secondAttribute="trailing" constant="8" id="YPX-Tr-Bju"/>
+                                                    <constraint firstAttribute="trailing" secondItem="stv-Wb-td8" secondAttribute="trailing" constant="-31" id="YPX-Tr-Bju"/>
                                                     <constraint firstAttribute="bottom" secondItem="stv-Wb-td8" secondAttribute="bottom" constant="12" id="eoH-gJ-QzL"/>
                                                     <constraint firstItem="stv-Wb-td8" firstAttribute="leading" secondItem="q1J-7b-Scy" secondAttribute="leading" constant="8" id="hT3-cA-Qep"/>
                                                 </constraints>
@@ -181,15 +181,16 @@
                                         </visualEffectView>
                                     </subviews>
                                     <constraints>
-                                        <constraint firstItem="RX2-ky-A4n" firstAttribute="leading" secondItem="q4F-oW-Gvg" secondAttribute="leadingMargin" constant="-8" id="2mG-oB-HOz"/>
-                                        <constraint firstItem="99Z-Fx-oQg" firstAttribute="leading" secondItem="q4F-oW-Gvg" secondAttribute="leadingMargin" constant="-8" id="75e-VQ-E8v"/>
-                                        <constraint firstAttribute="trailingMargin" secondItem="99Z-Fx-oQg" secondAttribute="trailing" constant="-8" id="MiS-XU-0sa"/>
+                                        <constraint firstItem="RX2-ky-A4n" firstAttribute="leading" secondItem="q4F-oW-Gvg" secondAttribute="leadingMargin" constant="12" id="2mG-oB-HOz"/>
+                                        <constraint firstItem="99Z-Fx-oQg" firstAttribute="leading" secondItem="q4F-oW-Gvg" secondAttribute="leadingMargin" constant="12" id="75e-VQ-E8v"/>
+                                        <constraint firstAttribute="trailingMargin" secondItem="99Z-Fx-oQg" secondAttribute="trailing" constant="11" id="MiS-XU-0sa"/>
                                         <constraint firstItem="99Z-Fx-oQg" firstAttribute="top" secondItem="q4F-oW-Gvg" secondAttribute="topMargin" constant="15" id="SHA-8b-H5e"/>
-                                        <constraint firstAttribute="trailingMargin" secondItem="RX2-ky-A4n" secondAttribute="trailing" constant="-8" id="dbX-SP-02n"/>
+                                        <constraint firstAttribute="trailingMargin" secondItem="RX2-ky-A4n" secondAttribute="trailing" constant="11" id="dbX-SP-02n"/>
                                         <constraint firstAttribute="bottomMargin" secondItem="99Z-Fx-oQg" secondAttribute="bottom" constant="15" id="jff-qY-jrN"/>
                                         <constraint firstAttribute="bottomMargin" secondItem="RX2-ky-A4n" secondAttribute="bottom" constant="14" id="mre-A7-6cx"/>
                                     </constraints>
                                 </tableViewCellContentView>
+                                <color key="backgroundColor" red="0.92156862745098034" green="0.92156862745098034" blue="0.94509803921568625" alpha="1" colorSpace="calibratedRGB"/>
                                 <connections>
                                     <outlet property="locationLabel" destination="stv-Wb-td8" id="9sy-Oo-D1D"/>
                                     <outlet property="mapView" destination="99Z-Fx-oQg" id="loy-hl-huJ"/>
