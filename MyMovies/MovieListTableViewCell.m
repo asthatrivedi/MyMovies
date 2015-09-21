@@ -17,7 +17,8 @@
 
 @property (weak, nonatomic) IBOutlet UILabel *actors;
 @property (weak, nonatomic) IBOutlet UILabel *location;
-@property (weak, nonatomic) IBOutlet UILabel *movieTitleWithYear;
+@property (weak, nonatomic) IBOutlet UILabel *movieTitle;
+@property (weak, nonatomic) IBOutlet UILabel *year;
 
 @end
 
@@ -27,9 +28,10 @@
     
     self.viewModel = viewModel;
     
-    self.movieTitleWithYear.text = [NSString stringWithFormat:@"%@ (%@)", viewModel.title, viewModel.year];
+    self.movieTitle.text = viewModel.title;
     self.actors.text = viewModel.actors;
     self.location.text = viewModel.latlong.location;
+    self.year.text = viewModel.year;
 }
 
 @end

@@ -23,7 +23,7 @@ NSString * const kActionSheetYear = @"Year";
 
 NSString * const kError = @"ERROR";
 NSString * const kErrorMessage = @"No Movies Playing in your area.";
-NSInteger const kEstimatedRowHeight = 111;
+NSInteger const kEstimatedRowHeight = 150;
 NSInteger const kNumberOfSections = 1;
 NSString * const kOkTitle = @"OK";
 NSString * const kScreenTitle = @"Movies";

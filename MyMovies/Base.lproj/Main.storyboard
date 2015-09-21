@@ -10,56 +10,65 @@
         <scene sceneID="Wcs-PJ-Dsv">
             <objects>
                 <tableViewController storyboardIdentifier="MovieList" id="Zgd-iZ-8xw" customClass="MovieListTableViewController" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="111" sectionHeaderHeight="22" sectionFooterHeight="22" id="xop-MS-VCy">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="139" sectionHeaderHeight="22" sectionFooterHeight="22" id="xop-MS-VCy">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
-                            <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="Cell" rowHeight="111" id="K5B-MT-tQE" customClass="MovieListTableViewCell">
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="Cell" rowHeight="139" id="K5B-MT-tQE" customClass="MovieListTableViewCell">
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="K5B-MT-tQE" id="37e-0f-Khr">
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Movie Name (Year)" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="IhN-lJ-r2F">
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Movie Name" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="IhN-lJ-r2F">
                                             <rect key="frame" x="8" y="11" width="576" height="25"/>
                                             <constraints>
                                                 <constraint firstAttribute="height" constant="25" id="wg8-tM-1Qd"/>
                                             </constraints>
-                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <fontDescription key="fontDescription" type="system" weight="medium" pointSize="20"/>
                                             <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="actor_1,actor_2, actor_3" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yzA-PO-8kQ">
-                                            <rect key="frame" x="8" y="44" width="576" height="20"/>
+                                            <rect key="frame" x="8" y="65.5" width="576" height="20"/>
                                             <fontDescription key="fontDescription" name="HelveticaNeue-Italic" family="Helvetica Neue" pointSize="17"/>
                                             <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" text="Location" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DdN-ai-LVI">
-                                            <rect key="frame" x="8" y="72" width="576" height="25"/>
+                                            <rect key="frame" x="8" y="91.5" width="576" height="32.5"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                             <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Year" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hoy-8J-CWD">
+                                            <rect key="frame" x="8" y="41" width="576" height="19.5"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                            <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                     </subviews>
                                     <constraints>
                                         <constraint firstAttribute="trailingMargin" secondItem="DdN-ai-LVI" secondAttribute="trailing" constant="8" id="2pU-qX-19g"/>
-                                        <constraint firstItem="yzA-PO-8kQ" firstAttribute="leading" secondItem="37e-0f-Khr" secondAttribute="leadingMargin" id="ArP-v0-Oxo"/>
+                                        <constraint firstItem="yzA-PO-8kQ" firstAttribute="leading" secondItem="37e-0f-Khr" secondAttribute="leadingMargin" id="9t6-ZR-eM3"/>
                                         <constraint firstItem="IhN-lJ-r2F" firstAttribute="top" secondItem="37e-0f-Khr" secondAttribute="topMargin" constant="3" id="DoG-ec-1bq"/>
-                                        <constraint firstItem="yzA-PO-8kQ" firstAttribute="top" secondItem="IhN-lJ-r2F" secondAttribute="bottom" constant="8" id="FPE-3i-9tV"/>
                                         <constraint firstAttribute="trailingMargin" secondItem="IhN-lJ-r2F" secondAttribute="trailing" constant="8" id="Jo0-DX-Cqn"/>
-                                        <constraint firstItem="yzA-PO-8kQ" firstAttribute="trailing" secondItem="IhN-lJ-r2F" secondAttribute="trailing" id="VFV-as-0rs"/>
-                                        <constraint firstAttribute="trailingMargin" secondItem="yzA-PO-8kQ" secondAttribute="trailing" constant="8" id="alc-Qa-bC9"/>
+                                        <constraint firstAttribute="trailingMargin" secondItem="hoy-8J-CWD" secondAttribute="trailing" constant="8" id="OTA-S2-clR"/>
+                                        <constraint firstItem="hoy-8J-CWD" firstAttribute="top" secondItem="IhN-lJ-r2F" secondAttribute="bottom" constant="5" id="Ycz-od-rsZ"/>
+                                        <constraint firstItem="hoy-8J-CWD" firstAttribute="leading" secondItem="37e-0f-Khr" secondAttribute="leadingMargin" id="bvO-XZ-hyp"/>
                                         <constraint firstItem="DdN-ai-LVI" firstAttribute="leading" secondItem="37e-0f-Khr" secondAttribute="leadingMargin" id="c2O-q3-jP3"/>
-                                        <constraint firstAttribute="bottomMargin" secondItem="DdN-ai-LVI" secondAttribute="bottom" constant="5" id="nGe-8X-sc5"/>
-                                        <constraint firstItem="DdN-ai-LVI" firstAttribute="top" secondItem="yzA-PO-8kQ" secondAttribute="bottom" constant="8" id="rPu-zQ-kjl"/>
+                                        <constraint firstAttribute="bottomMargin" secondItem="DdN-ai-LVI" secondAttribute="bottom" constant="6.5" id="nGe-8X-sc5"/>
+                                        <constraint firstAttribute="trailingMargin" secondItem="yzA-PO-8kQ" secondAttribute="trailing" constant="8" id="qN6-qo-QCr"/>
+                                        <constraint firstItem="yzA-PO-8kQ" firstAttribute="top" secondItem="hoy-8J-CWD" secondAttribute="bottom" constant="5" id="xxr-QI-Mje"/>
                                         <constraint firstItem="IhN-lJ-r2F" firstAttribute="leading" secondItem="37e-0f-Khr" secondAttribute="leadingMargin" id="y4V-PB-NaX"/>
+                                        <constraint firstItem="DdN-ai-LVI" firstAttribute="top" secondItem="yzA-PO-8kQ" secondAttribute="bottom" constant="6" id="yPh-MF-nTM"/>
                                     </constraints>
                                 </tableViewCellContentView>
                                 <connections>
                                     <outlet property="actors" destination="yzA-PO-8kQ" id="Ptv-I3-xJ5"/>
                                     <outlet property="location" destination="DdN-ai-LVI" id="hX6-8X-4yp"/>
-                                    <outlet property="movieTitleWithYear" destination="IhN-lJ-r2F" id="FJB-vZ-4Ls"/>
+                                    <outlet property="movieTitle" destination="IhN-lJ-r2F" id="mBI-Jk-fBy"/>
+                                    <outlet property="year" destination="hoy-8J-CWD" id="fG3-eC-kgG"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>
