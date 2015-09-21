@@ -22,6 +22,8 @@
 - (void)setupViewModel:(DetailItemViewModel *)inViewModel {
     self.infoType.text = inViewModel.infoType;
     self.value.text = inViewModel.value;
+    
+    self.value.preferredMaxLayoutWidth = 200;
 }
 
 @end

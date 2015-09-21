@@ -33,6 +33,8 @@
     [self.mapView addAnnotation:point];
     
     self.locationLabel.text = location.location;
+    
+    self.locationLabel.preferredMaxLayoutWidth = 200;
 }
 
 

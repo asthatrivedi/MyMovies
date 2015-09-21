@@ -136,19 +136,19 @@
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <mapView clipsSubviews="YES" multipleTouchEnabled="YES" tag="12" contentMode="scaleToFill" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="99Z-Fx-oQg">
-                                            <rect key="frame" x="0.0" y="23" width="600" height="197.5"/>
+                                            <rect key="frame" x="0.0" y="23" width="600" height="198"/>
                                             <connections>
                                                 <outlet property="delegate" destination="VS0-1T-Efl" id="zds-GY-1fK"/>
                                             </connections>
                                         </mapView>
                                         <visualEffectView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="RX2-ky-A4n">
-                                            <rect key="frame" x="0.0" y="176" width="600" height="45.5"/>
+                                            <rect key="frame" x="0.0" y="178" width="600" height="43.5"/>
                                             <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="q1J-7b-Scy">
-                                                <rect key="frame" x="0.0" y="0.0" width="600" height="45.5"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="600" height="43.5"/>
                                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                 <subviews>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="stv-Wb-td8">
-                                                        <rect key="frame" x="8" y="11" width="584" height="22.5"/>
+                                                        <rect key="frame" x="8" y="11" width="584" height="20.5"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                         <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                                         <nil key="highlightedColor"/>
@@ -157,7 +157,7 @@
                                                 <constraints>
                                                     <constraint firstItem="stv-Wb-td8" firstAttribute="top" secondItem="q1J-7b-Scy" secondAttribute="top" constant="11" id="3zx-lW-EJg"/>
                                                     <constraint firstAttribute="trailing" secondItem="stv-Wb-td8" secondAttribute="trailing" constant="8" id="YPX-Tr-Bju"/>
-                                                    <constraint firstAttribute="bottom" secondItem="stv-Wb-td8" secondAttribute="bottom" constant="12" id="cPK-hc-en2"/>
+                                                    <constraint firstAttribute="bottom" secondItem="stv-Wb-td8" secondAttribute="bottom" constant="12" id="eoH-gJ-QzL"/>
                                                     <constraint firstItem="stv-Wb-td8" firstAttribute="leading" secondItem="q1J-7b-Scy" secondAttribute="leading" constant="8" id="hT3-cA-Qep"/>
                                                 </constraints>
                                             </view>
@@ -166,7 +166,6 @@
                                         </visualEffectView>
                                     </subviews>
                                     <constraints>
-                                        <constraint firstItem="RX2-ky-A4n" firstAttribute="top" secondItem="q4F-oW-Gvg" secondAttribute="topMargin" constant="168" id="0qu-lC-vXd"/>
                                         <constraint firstItem="RX2-ky-A4n" firstAttribute="leading" secondItem="q4F-oW-Gvg" secondAttribute="leadingMargin" constant="-8" id="2mG-oB-HOz"/>
                                         <constraint firstItem="99Z-Fx-oQg" firstAttribute="leading" secondItem="q4F-oW-Gvg" secondAttribute="leadingMargin" constant="-8" id="75e-VQ-E8v"/>
                                         <constraint firstAttribute="trailingMargin" secondItem="99Z-Fx-oQg" secondAttribute="trailing" constant="-8" id="MiS-XU-0sa"/>
